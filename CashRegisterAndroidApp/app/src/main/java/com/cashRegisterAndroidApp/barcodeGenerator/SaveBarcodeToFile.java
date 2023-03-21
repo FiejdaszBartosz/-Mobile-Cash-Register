@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 
 import com.cashRegisterAndroidApp.barcodeGenerator.BarcodeGenerator;
+import com.google.zxing.common.BitMatrix;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -42,7 +43,7 @@ public class SaveBarcodeToFile {
         }
     }
 
-    public static Bitmap savePixelsToBitmap(int[] pixels) {
+    public static BitMatrix savePixelsToBitMatrix(int[] pixels) {
         int width = BarcodeGenerator.BARCODE_WIDTH;
         int height = BarcodeGenerator.BARCODE_HEIGHT;
         byte[] bitmapData = new byte[width * height * 4]; // każdy piksel zajmuje 4 bajty (ARGB)
@@ -54,12 +55,15 @@ public class SaveBarcodeToFile {
             bitmapData[i * 4 + 3] = (byte) Color.alpha(pixel);
         }
 
-        FileOutputStream outputStream = null;
+        BitMatrix bitMatrix = new BitMatrix(width, height);
+        for (int y = 0; y < height; y++) {
+            int offset = y * width * 4;
+            for (int x = 0; x < width; x++) {
+                bitMatrix.set(x, y);
+            }
+        }
 
-        Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        bmp.copyPixelsFromBuffer(ByteBuffer.wrap(bitmapData));
-
-        return bmp;
+        return bitMatrix;
     }
 
 }
