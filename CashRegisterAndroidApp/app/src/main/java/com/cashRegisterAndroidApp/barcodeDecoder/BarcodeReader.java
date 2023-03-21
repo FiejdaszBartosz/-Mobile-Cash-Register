@@ -5,6 +5,8 @@ import android.widget.TextView;
 
 import com.google.zxing.aztec.detector.Detector;
 
+/*TODO plan dzialania*/
+
 public class BarcodeReader implements Detector.Processor<Barcode> {
 
     private Context mContext;
