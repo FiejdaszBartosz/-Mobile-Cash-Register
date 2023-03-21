@@ -5,7 +5,19 @@ import android.widget.TextView;
 
 import com.google.zxing.aztec.detector.Detector;
 
-/*TODO plan dzialania*/
+/* TODO dekodowanie kodów kreskowych
+*  1. uzywamy klasy "Detector", podając w konstruktorze obraz z kamery (BitMatrix image)
+*  2. uzywamy Detector.detect() - otrzymujemy klasę "DetectorResult"
+*  3. uzywamy DetectorResult.getBits() aby otrzymac BitMatrix z dokladnie odszyfrowanym obszarem
+*  4. bity z BitMatrix dekodujemy ozywając Decoder.decode(BitMatrix bits) - otrzymujemy klasę "DecoderResult"
+*  5. z DecoderResult "getujemy" wybrane informacje (np. getText() - string)
+*
+*  Detector detector = Detector(image)
+*  DetectorResult detectorResult = detector.detect()
+*  BitMatrix barcodeData = detectorResult.getBits()
+*  DecoderResult decoderResult = Decoder.decode(barcodeData)
+*  String id = decoderResult.getText()
+* */
 
 public class BarcodeReader implements Detector.Processor<Barcode> {
 
