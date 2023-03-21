@@ -18,7 +18,7 @@ import com.google.zxing.aztec.detector.Detector;
 *  DecoderResult decoderResult = Decoder.decode(barcodeData)
 *  String id = decoderResult.getText()
 * */
-
+/*
 public class BarcodeReader implements Detector.Processor<Barcode> {
 
     private Context mContext;
@@ -51,3 +51,4 @@ public class BarcodeReader implements Detector.Processor<Barcode> {
         }
     }
 }
+*/
