@@ -1,5 +1,6 @@
 package com.cashRegisterAndroidApp.barcodeGenerator;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 
@@ -12,10 +13,10 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 
 public class SaveBarcodeToFile {
-    public static void savePixelsToFile(int[] pixels, String filename) {
+    public static void savePixelsToFile(Context context, int[] pixels, String filename) {
         int width = Barcode.BARCODE_WIDTH;
         int height = Barcode.BARCODE_HEIGHT;
-        byte[] bitmapData = new byte[width * height * 4]; // każdy piksel zajmuje 4 bajty (ARGB)
+        byte[] bitmapData = new byte[width * height * 4];
         for (int i = 0; i < pixels.length; i++) {
             int pixel = pixels[i];
             bitmapData[i * 4] = (byte) Color.red(pixel);
@@ -26,8 +27,7 @@ public class SaveBarcodeToFile {
 
         FileOutputStream outputStream = null;
         try {
-            outputStream = new FileOutputStream(filename);
-            // tworzymy strumień zapisu i zapisujemy tablicę pikseli jako plik PNG
+            outputStream = context.openFileOutput(filename, Context.MODE_PRIVATE);
             Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
             bmp.copyPixelsFromBuffer(ByteBuffer.wrap(bitmapData));
             bmp.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
@@ -41,6 +41,17 @@ public class SaveBarcodeToFile {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public static void saveBitmapToFile(Context context, Bitmap bitmap, String filename) {
+        try {
+            FileOutputStream outputStream = context.openFileOutput(filename, Context.MODE_PRIVATE);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+            outputStream.flush();
+            outputStream.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
