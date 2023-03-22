@@ -21,6 +21,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -33,8 +36,8 @@ public class BarcodeGeneratorTest {
     @Test
     public void testSaveBarcodeToFile() {
         Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        String text = "1231231231223";
-        String fileName = "test.png";
+        String text = "654321";
+        String fileName = "654321.png";
         String filePath = context.getFilesDir().getPath() + "/" + fileName;
 
         Bitmap bm = null;
@@ -48,6 +51,57 @@ public class BarcodeGeneratorTest {
         assertTrue(file.exists());
 
         String decodedText = BarcodeDecoder.decodeBarcodeFromFile1(context, fileName);
+        assertEquals(text, decodedText);
+    }
+
+    @Test
+    public void testReadingFromPhoto1() {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        String text = "123456";
+        String fileName = "IMG_9087.png";
+        String filePath = context.getFilesDir().getPath() + "/" + fileName;
+        InputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream(filePath);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String decodedText = BarcodeDecoder.decodeBarcodeFromStream2(inputStream, 4);
+        assertEquals(text, decodedText);
+    }
+
+    @Test
+    public void testReadingFromPhoto2() {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        String text = "123456";
+        String fileName = "IMG_9088.png";
+        String filePath = context.getFilesDir().getPath() + "/" + fileName;
+        InputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream(filePath);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String decodedText = BarcodeDecoder.decodeBarcodeFromStream2(inputStream, 4);
+        assertEquals(text, decodedText);
+    }
+
+    @Test
+    public void testReadingFromPhoto3() {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        String text = "654321";
+        String fileName = "IMG_9089.png";
+        String filePath = context.getFilesDir().getPath() + "/" + fileName;
+        InputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream(filePath);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String decodedText = BarcodeDecoder.decodeBarcodeFromStream2(inputStream, 4);
         assertEquals(text, decodedText);
     }
 }
