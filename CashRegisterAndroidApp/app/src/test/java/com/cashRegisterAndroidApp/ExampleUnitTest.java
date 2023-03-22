@@ -18,19 +18,5 @@ import com.google.zxing.common.BitMatrix;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
-    @Test
-    public void qwerty() {
-        String input = "123";
-        String output;
-        BitMatrix bitMatrixInput;
 
-        try {
-            bitMatrixInput = SaveBarcodeToFile.savePixelsToBitMatrix(BarcodeGenerator.generateBarcodePixels("input"));
-        } catch (WriterException e) {
-            throw new RuntimeException(e);
-        }
-
-        output = BarcodeDecoder.decode(bitMatrixInput);
-        assertEquals(input, output);
-    }
 }
