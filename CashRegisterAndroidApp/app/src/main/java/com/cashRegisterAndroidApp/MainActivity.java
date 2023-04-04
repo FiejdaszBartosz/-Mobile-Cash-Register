@@ -1,34 +1,54 @@
 package com.cashRegisterAndroidApp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.cashRegisterAndroidApp.cameraModule.CameraActivity;
-import com.cashRegisterAndroidApp.cameraModule.CameraActivity2;
+import com.cashRegisterAndroidApp.cameraModule.CameraX;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button cameraButton;
+    private static final String[] CAMERA_PERMISSION = new String[]{android.Manifest.permission.CAMERA};
+    private static final int CAMERA_REQUEST_CODE = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // Inicjujemy przycisk kamery
-        cameraButton = findViewById(R.id.camera_button);
-
-        // Przypisujemy akcję przyciskowi kamery
-        cameraButton.setOnClickListener(new View.OnClickListener() {
+        Button enableCamera = findViewById(R.id.camera_button);
+        enableCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Tworzymy intencję uruchamiającą CameraActivity
-                Intent intent = new Intent(MainActivity.this, CameraActivity2.class);
-                startActivity(intent);
+                if (hasCameraPermission()) {
+                    enableCamera();
+                } else {
+                    requestPermission();
+                }
             }
         });
+    }
+    private void enableCamera() {
+        Intent intent = new Intent(this, CameraX.class);
+        startActivity(intent);
+    }
+    private boolean hasCameraPermission() {
+        return ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CAMERA
+        ) == PackageManager.PERMISSION_GRANTED;
+    }
+    private void requestPermission() {
+        ActivityCompat.requestPermissions(
+                this,
+                CAMERA_PERMISSION,
+                CAMERA_REQUEST_CODE
+        );
     }
 }

@@ -12,14 +12,10 @@
         android:theme="@style/Theme.CashRegisterAndroidApp">
 
         <activity
-            android:name="com.cashRegisterAndroidApp.cameraModule.CameraActivity"
-            android:label="Camera Activity">
+            android:name=".cameraModule.CameraX"
+            android:label="CameraX">
         </activity>
 
-        <activity
-            android:name="com.cashRegisterAndroidApp.cameraModule.CameraActivity2"
-            android:label="Camera Activity2">
-        </activity>
 
         <activity
             android:name="com.cashRegisterAndroidApp.MainActivity"
