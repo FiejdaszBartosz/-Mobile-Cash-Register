@@ -55,7 +55,7 @@ public class BarcodeGeneratorTest {
     }
 
     @Test
-    public void testReadingFromPhoto1() {
+    public void testReadingFromPhoto11() {
         Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
         String text = "123456";
         String fileName = "IMG_9087.png";
@@ -67,12 +67,12 @@ public class BarcodeGeneratorTest {
             throw new RuntimeException(e);
         }
 
-        String decodedText = BarcodeDecoder.decodeBarcodeFromStream2(inputStream, 4);
+        String decodedText = BarcodeDecoder.decodeBarcodeFromStream(inputStream);
         assertEquals(text, decodedText);
     }
 
     @Test
-    public void testReadingFromPhoto2() {
+    public void testReadingFromPhoto12() {
         Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
         String text = "123456";
         String fileName = "IMG_9088.png";
@@ -84,12 +84,12 @@ public class BarcodeGeneratorTest {
             throw new RuntimeException(e);
         }
 
-        String decodedText = BarcodeDecoder.decodeBarcodeFromStream2(inputStream, 4);
+        String decodedText = BarcodeDecoder.decodeBarcodeFromStream(inputStream);
         assertEquals(text, decodedText);
     }
 
     @Test
-    public void testReadingFromPhoto3() {
+    public void testReadingFromPhoto13() {
         Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
         String text = "654321";
         String fileName = "IMG_9089.png";
@@ -101,7 +101,58 @@ public class BarcodeGeneratorTest {
             throw new RuntimeException(e);
         }
 
-        String decodedText = BarcodeDecoder.decodeBarcodeFromStream2(inputStream, 4);
+        String decodedText = BarcodeDecoder.decodeBarcodeFromStream(inputStream);
+        assertEquals(text, decodedText);
+    }
+
+    @Test
+    public void testReadingFromPhoto21() {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        String text = "123456";
+        String fileName = "IMG_9087.png";
+        String filePath = context.getFilesDir().getPath() + "/" + fileName;
+        InputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream(filePath);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String decodedText = BarcodeDecoder.decodeBarcodeFromStreamWithScale(inputStream, 4);
+        assertEquals(text, decodedText);
+    }
+
+    @Test
+    public void testReadingFromPhoto22() {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        String text = "123456";
+        String fileName = "IMG_9088.png";
+        String filePath = context.getFilesDir().getPath() + "/" + fileName;
+        InputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream(filePath);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String decodedText = BarcodeDecoder.decodeBarcodeFromStreamWithScale(inputStream, 4);
+        assertEquals(text, decodedText);
+    }
+
+    @Test
+    public void testReadingFromPhoto23() {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        String text = "654321";
+        String fileName = "IMG_9089.png";
+        String filePath = context.getFilesDir().getPath() + "/" + fileName;
+        InputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream(filePath);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String decodedText = BarcodeDecoder.decodeBarcodeFromStreamWithScale(inputStream, 4);
         assertEquals(text, decodedText);
     }
 }
