@@ -1,10 +1,13 @@
 package com.cashRegisterAndroidApp.cameraModule;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Size;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,8 +24,11 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 
 import com.cashRegisterAndroidApp.R;
+import com.cashRegisterAndroidApp.barcodeDecoder.BarcodeDecoder;
 import com.google.common.util.concurrent.ListenableFuture;
 
+import java.io.ByteArrayInputStream;
+import java.nio.ByteBuffer;
 import java.util.concurrent.ExecutionException;
 
 
@@ -68,9 +74,22 @@ public class CameraX extends AppCompatActivity {
 
                 imageCapture.takePicture(ContextCompat.getMainExecutor(CameraX.this), new ImageCapture.OnImageCapturedCallback() {
                     @Override
-                    public void onCaptureSuccess(@NonNull ImageProxy image) {
+                    public void onCaptureSuccess(@NonNull ImageProxy imageProxy) {
                         Log.i("123", "Button dziala");
-                        image.close();
+
+
+
+                        String code = "---";
+                        try {
+                            code = BarcodeDecoder.decodeBarcodeFromBitmapWithScale2(convertImageProxyToBitmap(imageProxy), 5);
+                        } catch (RuntimeException e) {
+                            code="nie znaleziono";
+                        }
+
+                        Toast.makeText(CameraX.this, code, Toast.LENGTH_SHORT).show();
+
+
+                        imageProxy.close();
                     }
 
                     @Override
@@ -120,5 +139,12 @@ public class CameraX extends AppCompatActivity {
         cameraProvider.bindToLifecycle((LifecycleOwner) this, cameraSelector, preview);
     }
 
-
+    private Bitmap convertImageProxyToBitmap(ImageProxy image) {
+        ByteBuffer byteBuffer = image.getPlanes()[0].getBuffer();
+        byteBuffer.rewind();
+        byte[] bytes = new byte[byteBuffer.capacity()];
+        byteBuffer.get(bytes);
+        byte[] clonedBytes = bytes.clone();
+        return BitmapFactory.decodeByteArray(clonedBytes, 0, clonedBytes.length);
+    }
 }

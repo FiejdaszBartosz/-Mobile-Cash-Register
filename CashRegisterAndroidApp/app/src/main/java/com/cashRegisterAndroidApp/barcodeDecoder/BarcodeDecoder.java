@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Matrix;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.BinaryBitmap;
@@ -208,5 +209,94 @@ public class BarcodeDecoder {
 
         return result.getText();
     }
+
+    public static String decodeBarcodeFromBitmap(Bitmap bitmap) {
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        int[] pixels = new int[width * height];
+        bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
+        RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
+        BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(source));
+        MultiFormatReader multiFormatReader = new MultiFormatReader();
+        Result decoderResult;
+        try {
+            decoderResult = multiFormatReader.decode(binaryBitmap);
+        } catch (NotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return decoderResult.getText();
+    }
+
+    public static String decodeBarcodeFromBitmapWithScale(Bitmap bitmap, int scale) {
+        int imageWidth = bitmap.getWidth();
+        int imageHeight = bitmap.getHeight();
+
+        int reqWidth = imageWidth / scale;
+        int reqHeight = imageHeight / scale;
+        int scaleFactor = Math.min(imageWidth / reqWidth, imageHeight / reqHeight);
+
+        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, imageWidth / scaleFactor, imageHeight / scaleFactor, false);
+
+        int[] pixels = new int[scaledBitmap.getWidth() * scaledBitmap.getHeight()];
+        scaledBitmap.getPixels(pixels, 0, scaledBitmap.getWidth(), 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight());
+        RGBLuminanceSource source = new RGBLuminanceSource(scaledBitmap.getWidth(), scaledBitmap.getHeight(), pixels);
+        BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(source));
+
+        MultiFormatReader multiFormatReader = new MultiFormatReader();
+        Result decoderResult;
+        try {
+            decoderResult = multiFormatReader.decode(binaryBitmap);
+        } catch (NotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        return decoderResult.getText();
+    }
+
+    public static String decodeBarcodeFromBitmapWithScale2(Bitmap bitmap, int scale) {
+        int imageWidth = bitmap.getWidth();
+        int imageHeight = bitmap.getHeight();
+
+        int reqWidth = imageWidth / scale;
+        int reqHeight = imageHeight / scale;
+        int scaleFactor = Math.min(imageWidth / reqWidth, imageHeight / reqHeight);
+
+        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, imageWidth / scaleFactor, imageHeight / scaleFactor, false);
+
+        int[] pixels = new int[scaledBitmap.getWidth() * scaledBitmap.getHeight()];
+        scaledBitmap.getPixels(pixels, 0, scaledBitmap.getWidth(), 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight());
+        RGBLuminanceSource source = new RGBLuminanceSource(scaledBitmap.getWidth(), scaledBitmap.getHeight(), pixels);
+        BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(source));
+
+        MultiFormatReader multiFormatReader = new MultiFormatReader();
+        Result decoderResult;
+
+        // Try to decode the barcode from the original image
+        try {
+            decoderResult = multiFormatReader.decode(binaryBitmap);
+        } catch (NotFoundException e) {
+            // If decoding fails, try rotating the image 90 degrees and try again, up to three times
+            for (int i = 0; i < 3; i++) {
+                Matrix matrix = new Matrix();
+                matrix.postRotate(90);
+                scaledBitmap = Bitmap.createBitmap(scaledBitmap, 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix, true);
+                pixels = new int[scaledBitmap.getWidth() * scaledBitmap.getHeight()];
+                scaledBitmap.getPixels(pixels, 0, scaledBitmap.getWidth(), 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight());
+                source = new RGBLuminanceSource(scaledBitmap.getWidth(), scaledBitmap.getHeight(), pixels);
+                binaryBitmap = new BinaryBitmap(new HybridBinarizer(source));
+
+                try {
+                    decoderResult = multiFormatReader.decode(binaryBitmap);
+                    return decoderResult.getText();
+                } catch (NotFoundException ignored) {
+                }
+            }
+            // If barcode cannot be decoded after rotating the image, throw an exception
+            throw new RuntimeException("Barcode not found.");
+        }
+
+        return decoderResult.getText();
+    }
+
 
 }
