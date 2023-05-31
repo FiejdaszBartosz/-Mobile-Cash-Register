@@ -11,6 +11,7 @@ import {
   TextInput,
   KeyboardAvoidingView,
   ScrollView,
+  StatusBar,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -19,6 +20,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 
 const LoginPage = () => {
+  StatusBar.setBackgroundColor("#457B9D");
   const [showPassword, setShowPassword] = useState(false);
   const navigation = useNavigation();
   const handleSignUp = () => {
@@ -106,6 +108,7 @@ const style = StyleSheet.create({
     backgroundColor: "#A8DADC",
     alignContent: "center",
     justifyContent: "center",
+    marginTop: StatusBar.currentHeight || 0,
   },
 
   mainContainer: {

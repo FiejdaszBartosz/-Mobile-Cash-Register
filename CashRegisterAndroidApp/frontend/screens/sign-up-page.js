@@ -12,6 +12,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Button,
+  StatusBar,
 } from "react-native";
 import LoginPage from "./login-page";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -27,6 +28,7 @@ const SignUpPage = () => {
   const handleLogin = () => {
     navigation.navigate("LoginPage");
   };
+  //StatusBar.setBackgroundColor("#457B9D");
 
   return (
     <SafeAreaView style={style.container}>
@@ -137,6 +139,7 @@ const style = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
+    marginTop: StatusBar.currentHeight || 0,
   },
   mainContainer: {
     flex: 1,
@@ -187,7 +190,6 @@ const style = StyleSheet.create({
     flexDirection: "row",
   },
   textInput: {
-    fontFamily: "Open Sans",
     padding: 0,
   },
   icons: {
