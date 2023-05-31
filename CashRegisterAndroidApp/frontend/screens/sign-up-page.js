@@ -21,6 +21,9 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 
+import Logo from "../components/logo";
+import Caption from "../components/caption";
+
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword1, setShowPassword1] = useState(false);
@@ -37,14 +40,11 @@ const SignUpPage = () => {
           behavior="padding"
           style={style.keyboardAvoidingView}
         >
-          <Image
-            style={style.logo}
-            source={require("../assets/img/regiself-logo.png")}
-          />
-
-          <View style={style.caption}>
+          <Logo />
+          {/* <View style={style.caption}>
             <Text style={[style.inscription]}> CREATE ACCOUNT</Text>
-          </View>
+          </View> */}
+          <Caption caption="CREATE ACCOUNT" />
           <View style={style.signUpPanel}>
             <View style={style.input}>
               <FontAwesome name="envelope" style={style.icons} />
@@ -147,12 +147,6 @@ const style = StyleSheet.create({
     height: "10%",
     alignItems: "center",
     justifyContent: "space-between",
-  },
-  logo: {
-    width: "100%",
-    height: 77,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
   },
   keyboardAvoidingView: {
     width: "100%",

@@ -18,6 +18,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
+import Logo from "../components/logo";
 
 const LoginPage = () => {
   StatusBar.setBackgroundColor("#457B9D");
@@ -31,10 +32,7 @@ const LoginPage = () => {
     <SafeAreaView style={style.container}>
       <ScrollView contentContainerStyle={style.scrollContainer}>
         <View style={style.mainContainer}>
-          <Image
-            style={style.logo}
-            source={require("../assets/img/regiself-logo.png")}
-          />
+          <Logo />
           <KeyboardAvoidingView
             behavior="weight"
             style={style.keyboardAvoidingView}
@@ -115,13 +113,6 @@ const style = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "flex-start",
-  },
-
-  logo: {
-    width: "100%",
-    height: 77,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
   },
 
   keyboardAvoidingView: {
