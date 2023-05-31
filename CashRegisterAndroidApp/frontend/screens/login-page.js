@@ -45,7 +45,7 @@ const LoginPage = () => {
             </View>
             <View style={style.loginPanel}>
               <View style={style.login}>
-                <FontAwesome name="envelope" style={style.envelope} />
+                <FontAwesome name="envelope" style={style.icons} />
                 <TextInput
                   style={[style.loginText]}
                   placeholder="EMAIL"
@@ -53,7 +53,7 @@ const LoginPage = () => {
                 />
               </View>
               <View style={style.password}>
-                <FontAwesome5 name="lock" style={style.lock} />
+                <FontAwesome5 name="lock" style={style.icons} />
                 <TextInput
                   style={[style.passwordText]}
                   placeholder="PASSWORD"
@@ -182,14 +182,10 @@ const style = StyleSheet.create({
     alignItems: "center",
   },
 
-  envelope: {
+  icons: {
     marginLeft: 10,
     marginRight: 10,
-  },
-
-  lock: {
-    marginLeft: 10,
-    marginRight: 10,
+    color: "#797676",
   },
 
   passwordText: {
