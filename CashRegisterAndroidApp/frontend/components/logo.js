@@ -7,7 +7,7 @@ const Logo = () => {
   return (
     <Image
       style={style.logo}
-      source={require("../assets/img/regiself-logo.png")}
+      source={require("../assets/img/logos/regiself-logo.png")}
     />
   );
 };
