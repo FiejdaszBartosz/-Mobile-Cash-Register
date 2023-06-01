@@ -7,7 +7,6 @@ import {
   View,
   StyleSheet,
   StatusBar,
-  Dimensions,
   TouchableOpacity,
 } from "react-native";
 import Logo from "../components/logo";
