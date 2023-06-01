@@ -15,12 +15,14 @@ export default Caption;
 
 const style = StyleSheet.create({
   caption: {
-    marginTop: 30,
+    marginTop: 10,
+    alignItems: "center",
   },
   inscription: {
-    fontWeight: 700,
+    fontWeight: "bold",
     fontSize: 40,
     color: "#1D3557",
     lineHeight: 54,
+    textAlign: "center",
   },
 });

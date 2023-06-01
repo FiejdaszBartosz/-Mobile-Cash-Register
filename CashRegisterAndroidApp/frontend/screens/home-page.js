@@ -62,10 +62,10 @@ style = StyleSheet.create({
     width: "60%",
     height: 200,
     borderRadius: 10,
-    backgroundColor: "#F1FAEE",
+    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 40,
+    marginTop: 25,
   },
   productImage: {
     width: 164,
@@ -88,7 +88,7 @@ style = StyleSheet.create({
     borderRadius: 12,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 70,
+    marginTop: 125,
   },
   productInfo: {
     alignItems: "flex-start",
