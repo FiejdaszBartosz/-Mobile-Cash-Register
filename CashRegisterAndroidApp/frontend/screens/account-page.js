@@ -20,10 +20,7 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 const AccountPage = ({}) => {
   const id = 2;
   const person = personsDate.find((person) => person.id === id);
-  const windowWidth = Dimensions.get("window").width;
-  const windowHeight = Dimensions.get("window").height;
 
-  console.log(windowHeight);
   return (
     <SafeAreaView style={style.container}>
       <View style={style.mainContainer}>
