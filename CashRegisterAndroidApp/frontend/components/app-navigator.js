@@ -9,6 +9,7 @@ import Home from "../screens/home-page";
 import ShoppingCartPage from "../screens/shopping-cart-page";
 import AccountPage from "../screens/account-page";
 import GoBackButton from "./go-back";
+import BillsPage from "../screens/bills-page";
 
 const Stack = createStackNavigator();
 
@@ -16,7 +17,7 @@ const AppNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="GoBackButton"
+        initialRouteName="BillsPage"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="LoginPage" component={LoginPage} />
@@ -25,6 +26,7 @@ const AppNavigator = () => {
         <Stack.Screen name="ShoppingCartPage" component={ShoppingCartPage} />
         <Stack.Screen name="AccountPage" component={AccountPage} />
         <Stack.Screen name="GoBackButton" component={GoBackButton} />
+        <Stack.Screen name="BillsPage" component={BillsPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
