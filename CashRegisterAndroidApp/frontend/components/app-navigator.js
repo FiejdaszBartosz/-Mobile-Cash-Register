@@ -11,7 +11,6 @@ import AccountPage from "../screens/account-page";
 import BillsPage from "../screens/bills-page";
 import OrderDetail from "../screens/order-details";
 import EditData from "../screens/edit-data";
-import Test from "../components/test";
 
 const Stack = createStackNavigator();
 
@@ -19,7 +18,7 @@ const AppNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Test"
+        initialRouteName="ShoppingCartPage"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="LoginPage" component={LoginPage} />
@@ -30,7 +29,6 @@ const AppNavigator = () => {
         <Stack.Screen name="BillsPage" component={BillsPage} />
         <Stack.Screen name="OrderDetail" component={OrderDetail} />
         <Stack.Screen name="EditData" component={EditData} />
-        <Stack.Screen name="Test" component={Test} />
       </Stack.Navigator>
     </NavigationContainer>
   );
