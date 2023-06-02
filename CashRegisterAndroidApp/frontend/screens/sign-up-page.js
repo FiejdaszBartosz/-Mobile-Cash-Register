@@ -85,9 +85,9 @@ const SignUpPage = () => {
                 onPress={() => setShowPassword1(!showPassword1)}
               >
                 {showPassword1 ? (
-                  <FontAwesome5 name="eye" />
+                  <FontAwesome5 name="eye" style={style.icons} />
                 ) : (
-                  <FontAwesome5 name="eye-slash" />
+                  <FontAwesome5 name="eye-slash" style={style.icons} />
                 )}
               </TouchableOpacity>
             </View>

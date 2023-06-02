@@ -34,7 +34,7 @@ const style = StyleSheet.create({
   },
   text: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: "normal",
     color: "#1D3557",
     marginLeft: 4,
   },

@@ -8,6 +8,7 @@ import {
   Style,
   StyleSheet,
   TouchableOpacity,
+  KeyboardAvoidingView,
 } from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FontAwesome from "react-native-vector-icons/FontAwesome";

@@ -20,7 +20,7 @@ const style = StyleSheet.create({
   },
   inscription: {
     fontWeight: "bold",
-    fontSize: 40,
+    fontSize: 32,
     color: "#1D3557",
     lineHeight: 54,
     textAlign: "center",
