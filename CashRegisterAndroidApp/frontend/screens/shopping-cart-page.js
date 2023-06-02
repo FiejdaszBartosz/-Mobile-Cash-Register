@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import { View, Text, SafeAreaView, StyleSheet, StatusBar } from "react-native";
+import { View, SafeAreaView, StyleSheet, StatusBar } from "react-native";
 import Logo from "../components/logo";
 import Caption from "../components/caption";
 import ShoppingCart from "../components/shopping-cart";

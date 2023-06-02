@@ -5,7 +5,6 @@ import {
   View,
   SafeAreaView,
   Text,
-  Image,
   StyleSheet,
   TouchableOpacity,
   TextInput,
@@ -13,15 +12,12 @@ import {
   ScrollView,
   StatusBar,
 } from "react-native";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 import Logo from "../components/logo";
 
 const LoginPage = () => {
-  StatusBar.setBackgroundColor("#457B9D");
   const [showPassword, setShowPassword] = useState(false);
   const navigation = useNavigation();
   const handleSignUp = () => {
@@ -65,9 +61,9 @@ const LoginPage = () => {
                   onPress={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
-                    <FontAwesome5 name="eye" />
+                    <FontAwesome5 name="eye" style={style.eyeIcon} />
                   ) : (
-                    <FontAwesome5 name="eye-slash" />
+                    <FontAwesome5 name="eye-slash" style={style.eyeIcon} />
                   )}
                 </TouchableOpacity>
               </View>
@@ -162,7 +158,7 @@ const style = StyleSheet.create({
   },
 
   loginText: {
-    width: "78%",
+    width: "87%",
     padding: 0,
   },
 
@@ -179,6 +175,10 @@ const style = StyleSheet.create({
   icons: {
     marginLeft: 10,
     marginRight: 10,
+    color: "#797676",
+  },
+
+  eyeIcon: {
     color: "#797676",
   },
 

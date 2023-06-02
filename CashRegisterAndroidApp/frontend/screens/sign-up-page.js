@@ -5,18 +5,12 @@ import {
   View,
   SafeAreaView,
   Text,
-  Image,
   StyleSheet,
   TouchableOpacity,
   TextInput,
   KeyboardAvoidingView,
-  ScrollView,
-  Button,
   StatusBar,
 } from "react-native";
-import LoginPage from "./login-page";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
@@ -31,19 +25,14 @@ const SignUpPage = () => {
   const handleLogin = () => {
     navigation.navigate("LoginPage");
   };
-  //StatusBar.setBackgroundColor("#457B9D");
-
   return (
     <SafeAreaView style={style.container}>
       <View style={style.mainContainer}>
         <KeyboardAvoidingView
-          behavior="padding"
+          behavior="weight"
           style={style.keyboardAvoidingView}
         >
           <Logo />
-          {/* <View style={style.caption}>
-            <Text style={[style.inscription]}> CREATE ACCOUNT</Text>
-          </View> */}
           <Caption caption="CREATE ACCOUNT" />
           <View style={style.signUpPanel}>
             <View style={style.input}>
@@ -66,9 +55,9 @@ const SignUpPage = () => {
               />
               <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
                 {showPassword ? (
-                  <FontAwesome5 name="eye" />
+                  <FontAwesome5 name="eye" style={style.eyeIcon} />
                 ) : (
-                  <FontAwesome5 name="eye-slash" />
+                  <FontAwesome5 name="eye-slash" style={style.eyeIcon} />
                 )}
               </TouchableOpacity>
             </View>
@@ -85,9 +74,9 @@ const SignUpPage = () => {
                 onPress={() => setShowPassword1(!showPassword1)}
               >
                 {showPassword1 ? (
-                  <FontAwesome5 name="eye" style={style.icons} />
+                  <FontAwesome5 name="eye" style={style.eyeIcon} />
                 ) : (
-                  <FontAwesome5 name="eye-slash" style={style.icons} />
+                  <FontAwesome5 name="eye-slash" style={style.eyeIcon} />
                 )}
               </TouchableOpacity>
             </View>
@@ -191,11 +180,14 @@ const style = StyleSheet.create({
     marginRight: 10,
     color: "#797676",
   },
+  eyeIcon: {
+    color: "#797676",
+  },
   passwordTextInput: {
     width: "78%",
   },
   dataInput: {
-    width: "100%",
+    width: "87%",
   },
   signUpButton: {
     width: "75%",

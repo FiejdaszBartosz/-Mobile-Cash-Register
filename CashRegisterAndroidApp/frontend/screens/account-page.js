@@ -15,8 +15,16 @@ import OptionsBar from "../components/options-bar";
 import personsDate from "../model/persons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import { useNavigation } from "@react-navigation/native";
 
 const AccountPage = ({}) => {
+  const navigation = useNavigation();
+  const handleBillsPage = () => {
+    navigation.navigate("BillsPage");
+  };
+  const handleEditDataPage = () => {
+    navigation.navigate("EditDataPage");
+  };
   const id = 2;
   const person = personsDate.find((person) => person.id === id);
 
@@ -44,14 +52,22 @@ const AccountPage = ({}) => {
         </View>
         <View style={style.line} />
         <View style={style.button}>
-          <TouchableOpacity style={style.touchableButton}>
-            <Text style={style.textButton}>MY BILLS</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={style.button}>
-          <TouchableOpacity style={style.touchableButton}>
-            <Text style={style.textButton}>EDIT</Text>
-          </TouchableOpacity>
+          <View>
+            <TouchableOpacity
+              style={style.touchableButton}
+              onPress={handleBillsPage}
+            >
+              <Text style={style.textButton}>MY BILLS</Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity
+              style={style.touchableButton}
+              onPress={handleEditDataPage}
+            >
+              <Text style={style.textButton}>EDIT</Text>
+            </TouchableOpacity>
+          </View>
         </View>
         <OptionsBar />
       </View>
@@ -75,8 +91,8 @@ const style = StyleSheet.create({
     justifyContent: "flex-start",
   },
   iconBackground: {
-    width: 77,
-    height: 77,
+    width: 60,
+    height: 60,
     borderRadius: 80,
     backgroundColor: "#F1FAEE",
     justifyContent: "center",
@@ -84,23 +100,23 @@ const style = StyleSheet.create({
     marginTop: 10,
   },
   icon: {
-    fontSize: 44,
+    fontSize: 35,
     color: "#457B9D",
   },
   information: {
     width: "83%",
-    height: 60,
+    height: 40,
     justifyContent: "flex-start",
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 10,
+    marginTop: 20,
   },
   fontsContainer: {
-    fontSize: 25,
+    fontSize: 20,
     color: "#1D3557",
   },
   iconContainer: {
-    fontSize: 20,
+    fontSize: 17,
     width: 25,
     color: "#457B9D",
     marginRight: 10,
@@ -110,6 +126,9 @@ const style = StyleSheet.create({
     width: 411,
     height: 1,
     backgroundColor: "#457B9D",
+  },
+  button: {
+    marginTop: 40,
   },
   touchableButton: {
     width: 196,

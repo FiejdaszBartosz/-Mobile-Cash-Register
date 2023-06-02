@@ -1,29 +1,31 @@
 /** @format */
 
 import React from "react";
-import {
-  Text,
-  StatusBar,
-  View,
-  Style,
-  StyleSheet,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-} from "react-native";
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { useNavigation } from "@react-navigation/native";
 
 const OptionsBar = () => {
+  const navigation = useNavigation();
+  const handleCart = () => {
+    navigation.navigate("ShoppingCartPage");
+  };
+  // const handleAparat = () => {
+  //   navigation.navigate("Aparat");
+  // };
+  const handleAccount = () => {
+    navigation.navigate("AccountPage");
+  };
   return (
     <View style={style.container}>
       <View style={style.mainContainer}>
-        <TouchableOpacity style={style.touchableIcons}>
+        <TouchableOpacity style={style.touchableIcons} onPress={handleCart}>
           <FontAwesome name="shopping-cart" style={style.icons} />
         </TouchableOpacity>
         <TouchableOpacity style={style.touchableCamera}>
           <FontAwesome name="camera" style={style.iconsCamera} />
         </TouchableOpacity>
-        <TouchableOpacity style={style.touchableIcons}>
+        <TouchableOpacity style={style.touchableIcons} onPress={handleAccount}>
           <FontAwesome name="user" style={style.icons} />
         </TouchableOpacity>
       </View>
@@ -52,6 +54,9 @@ const style = StyleSheet.create({
   },
   iconsCamera: {
     fontSize: 35,
+  },
+  touchableIcons: {
+    padding: 20,
   },
   touchableCamera: {
     width: 100,

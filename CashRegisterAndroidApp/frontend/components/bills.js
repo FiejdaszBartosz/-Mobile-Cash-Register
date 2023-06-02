@@ -1,14 +1,26 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import personBills from "../model/person-bills";
 import billsData from "../model/bills";
 import products from "../model/products";
+import { useNavigation } from "@react-navigation/native";
 
-const Bills = () => {
+const Bills = ({ navigate }) => {
   const [totalCost, setTotalCost] = useState(0);
   const productIds = [];
+  const navigation = useNavigation();
+  const handleOrderDetailsPage = (billId) => {
+    navigation.navigate("OrderDetailPage", { billId: billId });
+  };
 
   const personId = 1;
   const billIds = personBills
@@ -44,21 +56,27 @@ const Bills = () => {
   useEffect(() => {
     calculateTotalCost(bills);
   }, [bills]);
-
   return (
     <ScrollView style={style.scrollViewContent}>
       <View style={style.billsContainer}>
         {billsData.map((bill) => (
-          <View key={bill.id} style={style.billItem}>
-            <Image source={randomProductImage} style={style.image} />
-            <View style={style.itemContainer}>
-              <Text style={style.informationContainer}>nr: {bill.nrOrder}</Text>
-              <Text style={style.informationContainer}>{bill.date}</Text>
+          <TouchableOpacity
+            key={bill.id}
+            onPress={() => handleOrderDetailsPage(bill.id)}
+          >
+            <View key={bill.id} style={style.billItem}>
+              <Image source={randomProductImage} style={style.image} />
+              <View style={style.itemContainer}>
+                <Text style={style.informationContainer}>
+                  nr: {bill.nrOrder}
+                </Text>
+                <Text style={style.informationContainer}>{bill.date}</Text>
+              </View>
+              <View style={style.priceContainer}>
+                <Text style={style.totalCost}>$ 100</Text>
+              </View>
             </View>
-            <View style={style.priceContainer}>
-              <Text style={style.totalCost}>$ {totalCost}</Text>
-            </View>
-          </View>
+          </TouchableOpacity>
         ))}
       </View>
     </ScrollView>
@@ -95,6 +113,7 @@ const style = StyleSheet.create({
   informationContainer: {
     fontSize: 15,
     color: "#000000",
+    marginTop: 5,
   },
   priceContainer: {
     alignSelf: "flex-end",
@@ -102,6 +121,9 @@ const style = StyleSheet.create({
   },
   itemContainer: {
     flexDirection: "column",
+    alignSelf: "flex-start",
+    justifyContent: "flex-start",
+    width: "40%",
   },
   productsContainer: {
     marginLeft: 16,
@@ -112,7 +134,7 @@ const style = StyleSheet.create({
     marginTop: 8,
   },
   totalCost: {
-    fontSize: 20,
+    fontSize: 18,
     color: "#E63946",
   },
   scrollViewContent: {

@@ -8,6 +8,7 @@ import {
   StatusBar,
   ScrollView,
   Image,
+  useRoute,
 } from "react-native";
 import Logo from "../components/logo";
 import GoBack from "../components/go-back";
@@ -16,10 +17,11 @@ import OptionsBar from "../components/options-bar";
 import BillsData from "../model/bills";
 import ProductsData from "../model/products";
 
-const OrderDetail = ({ orderID }) => {
+const OrderDetailPage = ({ route }) => {
   const [totalCost, setTotalCost] = useState(0);
+  const { billId } = route.params;
 
-  const bill = BillsData.find((bill) => bill.id === orderID);
+  const bill = BillsData.find((bill) => bill.id === billId);
   let cost = 0;
   bill.products.forEach((product) => {
     cost += product.cost;
@@ -107,7 +109,7 @@ const OrderDetail = ({ orderID }) => {
   );
 };
 
-export default OrderDetail;
+export default OrderDetailPage;
 
 const style = {
   container: {

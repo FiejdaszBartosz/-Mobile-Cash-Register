@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   StyleSheet,
   Text,
@@ -11,11 +11,10 @@ import {
 } from "react-native";
 import cartData from "../model/cart";
 import productsData from "../model/products";
-import billsData from "../model/bills";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 const ShoppingCart = () => {
-  const cartId = 4;
+  const cartId = 1;
 
   const cart = cartData.find((cartItem) => cartItem.id === cartId);
 
