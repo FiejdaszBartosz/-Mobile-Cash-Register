@@ -10,9 +10,9 @@ const OptionsBar = () => {
   const handleCart = () => {
     navigation.navigate("ShoppingCartPage");
   };
-  // const handleCamera = () => {
-  //   navigation.navigate("CameraScreen");
-  // };
+  const handleCamera = () => {
+    navigation.navigate("Camera");
+  };
   const handleAccount = () => {
     navigation.navigate("AccountPage");
   };
@@ -23,7 +23,11 @@ const OptionsBar = () => {
           <FontAwesome name="shopping-cart" style={style.icons} />
         </TouchableOpacity>
         <TouchableOpacity style={style.touchableCamera}>
-          <FontAwesome name="camera" style={style.iconsCamera} />
+          <FontAwesome
+            name="camera"
+            style={style.iconsCamera}
+            onPress={handleCamera}
+          />
         </TouchableOpacity>
         <TouchableOpacity style={style.touchableIcons} onPress={handleAccount}>
           <FontAwesome name="user" style={style.icons} />

@@ -12,8 +12,7 @@ import BillsPage from "../screens/bills-page";
 import OrderDetailPage from "../screens/order-details";
 import EditDataPage from "../screens/edit-data";
 import Camera from "./camera";
-
-// import CameraScreen from "../components/camera-screen";
+import DisplayQRCode from "../screens/display-qrcode";
 
 const Stack = createStackNavigator();
 
@@ -21,7 +20,7 @@ const AppNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Camera"
+        initialRouteName="AccountPage"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="LoginPage" component={LoginPage} />
@@ -33,7 +32,7 @@ const AppNavigator = () => {
         <Stack.Screen name="OrderDetailPage" component={OrderDetailPage} />
         <Stack.Screen name="EditDataPage" component={EditDataPage} />
         <Stack.Screen name="Camera" component={Camera} />
-        {/* <Stack.Screen name="CameraScreen" component={CameraScreen} /> */}
+        <Stack.Screen name="DisplayQRCode" component={DisplayQRCode} />
       </Stack.Navigator>
     </NavigationContainer>
   );

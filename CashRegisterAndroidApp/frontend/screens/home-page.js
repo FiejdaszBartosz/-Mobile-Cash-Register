@@ -14,10 +14,16 @@ import Logo from "../components/logo";
 import Caption from "../components/caption";
 import OptionsBar from "../components/options-bar";
 import products from "../model/products";
+import { useNavigation } from "@react-navigation/native";
 
 const App = () => {
   const randomIndex = Math.floor(Math.random() * products.length);
   const randomProduct = products[randomIndex];
+
+  const navigation = useNavigation();
+  const handleQRCode = () => {
+    navigation.navigate("DisplayQRCode");
+  };
 
   return (
     <SafeAreaView style={style.container}>
@@ -32,7 +38,10 @@ const App = () => {
           </View>
         </View>
         <View style={style.startShoppingButton}>
-          <TouchableOpacity style={style.touchableButton}>
+          <TouchableOpacity
+            style={style.touchableButton}
+            onPress={handleQRCode}
+          >
             <Text style={style.textShoppingStart}>START</Text>
             <Text style={style.textShoppingStart}>SHOPPING</Text>
           </TouchableOpacity>
