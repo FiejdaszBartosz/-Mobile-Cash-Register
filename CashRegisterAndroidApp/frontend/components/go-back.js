@@ -2,12 +2,17 @@
 
 import React from "react";
 import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
-const GoBackButton = () => {
+const GoBackButton = ({}) => {
+  const navigation = useNavigation();
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
   return (
     <View style={style.container}>
-      <TouchableOpacity style={style.touchableContainer}>
+      <TouchableOpacity style={style.touchableContainer} onPress={handleGoBack}>
         <FontAwesome5 name="arrow-left" style={style.icon} />
         <Text style={style.text}>Back</Text>
       </TouchableOpacity>
