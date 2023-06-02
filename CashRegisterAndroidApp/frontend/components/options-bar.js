@@ -2,16 +2,16 @@
 
 import React from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 const OptionsBar = () => {
   const navigation = useNavigation();
   const handleCart = () => {
     navigation.navigate("ShoppingCartPage");
   };
-  // const handleAparat = () => {
-  //   navigation.navigate("Aparat");
+  // const handleCamera = () => {
+  //   navigation.navigate("CameraScreen");
   // };
   const handleAccount = () => {
     navigation.navigate("AccountPage");

@@ -11,6 +11,9 @@ import AccountPage from "../screens/account-page";
 import BillsPage from "../screens/bills-page";
 import OrderDetailPage from "../screens/order-details";
 import EditDataPage from "../screens/edit-data";
+import Camera from "./camera";
+
+// import CameraScreen from "../components/camera-screen";
 
 const Stack = createStackNavigator();
 
@@ -18,7 +21,7 @@ const AppNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="AccountPage"
+        initialRouteName="Camera"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="LoginPage" component={LoginPage} />
@@ -29,6 +32,8 @@ const AppNavigator = () => {
         <Stack.Screen name="BillsPage" component={BillsPage} />
         <Stack.Screen name="OrderDetailPage" component={OrderDetailPage} />
         <Stack.Screen name="EditDataPage" component={EditDataPage} />
+        <Stack.Screen name="Camera" component={Camera} />
+        {/* <Stack.Screen name="CameraScreen" component={CameraScreen} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
