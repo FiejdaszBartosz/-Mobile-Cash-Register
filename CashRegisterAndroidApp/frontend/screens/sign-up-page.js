@@ -21,9 +21,19 @@ import Caption from "../components/caption";
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword1, setShowPassword1] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setconfirmPassword] = useState("");
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+
   const navigation = useNavigation();
   const handleLogin = () => {
     navigation.navigate("LoginPage");
+  };
+
+  const handleEmailChange = () => {
+    setEmail(text);
   };
   return (
     <SafeAreaView style={style.container}>
@@ -42,6 +52,8 @@ const SignUpPage = () => {
                 placeholder="EMAIL"
                 placeholderTextColor={"#797676"}
                 keyboardType="default"
+                value={email}
+                onChangeText={handleEmailChange}
               />
             </View>
             <View style={style.input}>
@@ -65,7 +77,7 @@ const SignUpPage = () => {
               <FontAwesome5 name="lock" style={style.icons} />
               <TextInput
                 style={[style.textInput, style.passwordTextInput]}
-                placeholder="PASSWORD"
+                placeholder="CONFIRM PASSWORD"
                 placeholderTextColor={"#797676"}
                 secureTextEntry={!showPassword1}
                 keyboardType="default"
@@ -90,17 +102,19 @@ const SignUpPage = () => {
               />
             </View>
             <View style={style.input}>
-              <FontAwesome5 name="mobile" style={style.icons} />
+              <FontAwesome name="user" style={style.icons} />
               <TextInput
                 style={[style.textInput, style.dataInput]}
-                placeholder="PHONE NUMBER"
+                placeholder="SURNAME"
                 placeholderTextColor={"#797676"}
-                keyboardType="numeric"
+                keyboardType="default"
               />
             </View>
             <View style={style.signUpButton}>
               <TouchableOpacity
-                onPress={() => {}}
+                onPress={() => {
+                  console.log(email); // Wyświetli wartość email w konsoli
+                }}
                 style={style.signUpButtonText}
               >
                 <Text style={[style.signUpButtonTextColor]}>SIGN UP</Text>
