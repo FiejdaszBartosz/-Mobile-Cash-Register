@@ -56,9 +56,27 @@ const SignUpPage = () => {
     navigation.navigate("LoginPage");
   };
 
-  const handleEmailChange = () => {
-    setEmail(text);
+  const handleChange = (name, value) => {
+    if (name === "email") {
+      setEmail(value);
+      console.log(name);
+    } else if (name === "password") {
+      setPassword(value);
+      console.log(name);
+    } else if (name === "confirmPassword") {
+      setconfirmPassword(value);
+      console.log(name);
+    } else if (name === "name") {
+      setName(value);
+      console.log(name);
+    } else if (name === "surname") {
+      setSurname(value);
+      console.log(name);
+    } else {
+      alert("error");
+    }
   };
+
   return (
     <SafeAreaView style={style.container}>
       <View style={style.mainContainer}>
@@ -77,7 +95,7 @@ const SignUpPage = () => {
                 placeholderTextColor={"#797676"}
                 keyboardType="default"
                 value={email}
-                onChangeText={handleEmailChange}
+                onChangeText={(value) => handleChange("email", value)}
               />
             </View>
             <View style={style.input}>
@@ -88,6 +106,8 @@ const SignUpPage = () => {
                 placeholderTextColor={"#797676"}
                 secureTextEntry={!showPassword}
                 keyboardType="default"
+                value={password}
+                onChangeText={(value) => handleChange("password", value)}
               />
               <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
                 {showPassword ? (
@@ -105,6 +125,8 @@ const SignUpPage = () => {
                 placeholderTextColor={"#797676"}
                 secureTextEntry={!showPassword1}
                 keyboardType="default"
+                value={confirmPassword}
+                onChangeText={(value) => handleChange("confirmPassword", value)}
               />
               <TouchableOpacity
                 onPress={() => setShowPassword1(!showPassword1)}
@@ -123,6 +145,8 @@ const SignUpPage = () => {
                 placeholder="NAME"
                 placeholderTextColor={"#797676"}
                 keyboardType="default"
+                value={name}
+                onChangeText={(value) => handleChange("name", value)}
               />
             </View>
             <View style={style.input}>
@@ -132,6 +156,8 @@ const SignUpPage = () => {
                 placeholder="SURNAME"
                 placeholderTextColor={"#797676"}
                 keyboardType="default"
+                value={surname}
+                onChangeText={(value) => handleChange("surname", value)}
               />
             </View>
             <View style={style.signUpButton}>
