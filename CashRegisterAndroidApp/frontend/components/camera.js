@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Camera() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -17,9 +18,13 @@ export default function Camera() {
     getBarCodeScannerPermissions();
   }, []);
 
-  const handleBarCodeScanned = ({ type, data }) => {
+  const navigator = useNavigation();
+
+  const handleShoppingCart = () => {
+    navigator.navigate("ShoppingCartPage");
+  };
+  const handleBarCodeScanned = ({ data }) => {
     setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
   };
 
   if (hasPermission === null) {
