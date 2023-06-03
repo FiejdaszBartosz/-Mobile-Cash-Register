@@ -20,7 +20,7 @@ const AppNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="AccountPage"
+        initialRouteName="SignUpPage"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="LoginPage" component={LoginPage} />
