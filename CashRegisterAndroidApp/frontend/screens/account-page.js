@@ -123,7 +123,7 @@ const style = StyleSheet.create({
     alignItems: "center",
   },
   line: {
-    width: 411,
+    width: 350,
     height: 1,
     backgroundColor: "#457B9D",
   },

@@ -38,10 +38,10 @@ const ShoppingCart = () => {
           return (
             <View key={product.productId}>
               <View style={style.productContainer}>
-                <Image
+                {/* <Image
                   source={productData.image}
                   style={style.imageContainer}
-                />
+                /> */}
                 <View style={style.productInformationContainer}>
                   <Text style={style.productName}>{productData.name}</Text>
                   <Text style={style.productQuantity}>
@@ -127,6 +127,7 @@ const style = StyleSheet.create({
     color: "#E63946",
     marginBottom: 5,
     alignSelf: "flex-end",
+    justifyContent: "center",
     marginRight: 15,
   },
   productQuantity: {
