@@ -11,6 +11,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   StatusBar,
+  Image,
 } from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -28,7 +29,10 @@ const LoginPage = () => {
     <SafeAreaView style={style.container}>
       <ScrollView contentContainerStyle={style.scrollContainer}>
         <View style={style.mainContainer}>
-          <Logo />
+          <Image
+            style={style.logo}
+            source={require("../assets/img/logos/regiself-logo.png")}
+          />
           <KeyboardAvoidingView
             behavior="weight"
             style={style.keyboardAvoidingView}
@@ -103,6 +107,12 @@ const style = StyleSheet.create({
     alignContent: "center",
     justifyContent: "center",
     marginTop: StatusBar.currentHeight || 0,
+  },
+  logo: {
+    width: "100%",
+    height: 77,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
 
   mainContainer: {

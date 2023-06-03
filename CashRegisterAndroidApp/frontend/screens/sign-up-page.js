@@ -10,6 +10,7 @@ import {
   TextInput,
   KeyboardAvoidingView,
   StatusBar,
+  Image,
 } from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -62,19 +63,14 @@ const SignUpPage = () => {
   const handleChange = (name, value) => {
     if (name === "email") {
       setEmail(value);
-      console.log(name);
     } else if (name === "password") {
       setPassword(value);
-      console.log(name);
     } else if (name === "confirmPassword") {
       setconfirmPassword(value);
-      console.log(name);
     } else if (name === "name") {
       setName(value);
-      console.log(name);
     } else if (name === "surname") {
       setSurname(value);
-      console.log(name);
     } else {
       alert("error");
     }
@@ -87,7 +83,10 @@ const SignUpPage = () => {
           behavior="weight"
           style={style.keyboardAvoidingView}
         >
-          <Logo />
+          <Image
+            style={style.logo}
+            source={require("../assets/img/logos/regiself-logo.png")}
+          />
           <Caption caption="CREATE ACCOUNT" />
           <View style={style.signUpPanel}>
             <View style={style.input}>
@@ -194,6 +193,12 @@ const style = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     marginTop: StatusBar.currentHeight || 0,
+  },
+  logo: {
+    width: "100%",
+    height: 77,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
   mainContainer: {
     flex: 1,
