@@ -30,26 +30,29 @@ const SignUpPage = () => {
   const navigation = useNavigation();
 
   const testFun = () => {
-    alert(`testFun`);
-    fetch("http://10.0.2.2:8080/signin", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        firstName: "Test",
-        lastName: "Test",
-        email: "test5@test.com",
-        password: "test",
-      }),
-    })
-      .then((response) => response.text())
-      .then((data) => {
-        console.log(data);
+    if (password === confirmPassword) {
+      fetch("http://10.0.2.2:8080/signin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName: name,
+          lastName: surname,
+          email: email,
+          password: password,
+        }),
       })
-      .catch((error) => {
-        console.error(error);
-      });
+        .then((response) => response.text())
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      alert("Password not match");
+    }
   };
 
   const handleLogin = () => {
@@ -162,7 +165,7 @@ const SignUpPage = () => {
             </View>
             <View style={style.signUpButton}>
               <TouchableOpacity
-                onPress={() => {}}
+                onPress={testFun}
                 style={style.signUpButtonText}
               >
                 <Text style={[style.signUpButtonTextColor]}>SIGN UP</Text>
