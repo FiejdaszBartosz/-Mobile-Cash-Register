@@ -1,0 +1,90 @@
+Index: ../../../../Studia/semestr6/mobileCashRegisterProject/CashRegisterAndroidApp/package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../../../Studia/semestr6/mobileCashRegisterProject/CashRegisterAndroidApp/package.json b/../../../../Studia/semestr6/mobileCashRegisterProject/CashRegisterAndroidApp/frontend/package.json
+rename from ../../../../Studia/semestr6/mobileCashRegisterProject/CashRegisterAndroidApp/package.json
+rename to ../../../../Studia/semestr6/mobileCashRegisterProject/CashRegisterAndroidApp/frontend/package.json
+--- a/../../../../Studia/semestr6/mobileCashRegisterProject/CashRegisterAndroidApp/package.json	(revision 7fe87f9584d7e952a4d7cbe9fac5b33f29661a42)
++++ b/../../../../Studia/semestr6/mobileCashRegisterProject/CashRegisterAndroidApp/frontend/package.json	(date 1685780637314)
+@@ -1,7 +1,7 @@
+ {
+   "name": "cashregister",
+   "version": "1.0.0",
+-  "main": "frontend/node_modules/expo/AppEntry.js",
++  "main": "node_modules/expo/AppEntry.js",
+   "scripts": {
+     "start": "expo start",
+     "android": "expo start --android",
+Index: ../../../../Studia/semestr6/mobileCashRegisterProject/CashRegisterAndroidApp/.idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"CompilerConfiguration\">\n    <bytecodeTargetLevel target=\"11\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../../../Studia/semestr6/mobileCashRegisterProject/CashRegisterAndroidApp/.idea/compiler.xml b/../../../../Studia/semestr6/mobileCashRegisterProject/CashRegisterAndroidApp/.idea/compiler.xml
+--- a/../../../../Studia/semestr6/mobileCashRegisterProject/CashRegisterAndroidApp/.idea/compiler.xml	(revision 7fe87f9584d7e952a4d7cbe9fac5b33f29661a42)
++++ b/../../../../Studia/semestr6/mobileCashRegisterProject/CashRegisterAndroidApp/.idea/compiler.xml	(date 1685777556484)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="CompilerConfiguration">
+-    <bytecodeTargetLevel target="11" />
++    <bytecodeTargetLevel target="17" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: ../../../../Studia/semestr6/mobileCashRegisterProject/CashRegisterAndroidApp/.idea/deploymentTargetDropDown.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"deploymentTargetDropDown\">\r\n    <runningDeviceTargetSelectedWithDropDown>\r\n      <Target>\r\n        <type value=\"RUNNING_DEVICE_TARGET\" />\r\n        <deviceKey>\r\n          <Key>\r\n            <type value=\"VIRTUAL_DEVICE_PATH\" />\r\n            <value value=\"$USER_HOME$/.android/avd/Pixel_XL_API_33.avd\" />\r\n          </Key>\r\n        </deviceKey>\r\n      </Target>\r\n    </runningDeviceTargetSelectedWithDropDown>\r\n    <timeTargetWasSelectedWithDropDown value=\"2023-04-04T15:49:35.458667Z\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../../../Studia/semestr6/mobileCashRegisterProject/CashRegisterAndroidApp/.idea/deploymentTargetDropDown.xml b/../../../../Studia/semestr6/mobileCashRegisterProject/CashRegisterAndroidApp/.idea/deploymentTargetDropDown.xml
+--- a/../../../../Studia/semestr6/mobileCashRegisterProject/CashRegisterAndroidApp/.idea/deploymentTargetDropDown.xml	(revision 7fe87f9584d7e952a4d7cbe9fac5b33f29661a42)
++++ b/../../../../Studia/semestr6/mobileCashRegisterProject/CashRegisterAndroidApp/.idea/deploymentTargetDropDown.xml	(date 1685787092540)
+@@ -1,9 +1,9 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="deploymentTargetDropDown">
+-    <runningDeviceTargetSelectedWithDropDown>
++    <targetSelectedWithDropDown>
+       <Target>
+-        <type value="RUNNING_DEVICE_TARGET" />
++        <type value="QUICK_BOOT_TARGET" />
+         <deviceKey>
+           <Key>
+             <type value="VIRTUAL_DEVICE_PATH" />
+@@ -11,7 +11,7 @@
+           </Key>
+         </deviceKey>
+       </Target>
+-    </runningDeviceTargetSelectedWithDropDown>
+-    <timeTargetWasSelectedWithDropDown value="2023-04-04T15:49:35.458667Z" />
++    </targetSelectedWithDropDown>
++    <timeTargetWasSelectedWithDropDown value="2023-06-03T10:11:25.072836Z" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: ../../../../Studia/semestr6/mobileCashRegisterProject/CashRegisterAndroidApp/.idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"Android Studio default JDK\" project-jdk-type=\"JavaSDK\">\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\n  </component>\n  <component name=\"ProjectType\">\n    <option name=\"id\" value=\"Android\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../../../../Studia/semestr6/mobileCashRegisterProject/CashRegisterAndroidApp/.idea/misc.xml b/../../../../Studia/semestr6/mobileCashRegisterProject/CashRegisterAndroidApp/.idea/misc.xml
+--- a/../../../../Studia/semestr6/mobileCashRegisterProject/CashRegisterAndroidApp/.idea/misc.xml	(revision 7fe87f9584d7e952a4d7cbe9fac5b33f29661a42)
++++ b/../../../../Studia/semestr6/mobileCashRegisterProject/CashRegisterAndroidApp/.idea/misc.xml	(date 1685794261449)
+@@ -1,7 +1,6 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ExternalStorageConfigurationManager" enabled="true" />
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/build/classes" />
+   </component>
+   <component name="ProjectType">

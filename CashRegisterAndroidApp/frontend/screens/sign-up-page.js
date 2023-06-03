@@ -28,6 +28,30 @@ const SignUpPage = () => {
   const [surname, setSurname] = useState("");
 
   const navigation = useNavigation();
+
+  const testFun = () => {
+    alert(`testFun`);
+    fetch("http://10.0.2.2:8080/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstName: "Test",
+        lastName: "Test",
+        email: "test5@test.com",
+        password: "test",
+      }),
+    })
+      .then((response) => response.text())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   const handleLogin = () => {
     navigation.navigate("LoginPage");
   };
@@ -112,9 +136,7 @@ const SignUpPage = () => {
             </View>
             <View style={style.signUpButton}>
               <TouchableOpacity
-                onPress={() => {
-                  console.log(email); // Wyświetli wartość email w konsoli
-                }}
+                onPress={() => {}}
                 style={style.signUpButtonText}
               >
                 <Text style={[style.signUpButtonTextColor]}>SIGN UP</Text>
