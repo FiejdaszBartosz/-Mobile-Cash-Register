@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   SafeAreaView,
@@ -15,14 +15,56 @@ import Caption from "../components/caption";
 import OptionsBar from "../components/options-bar";
 import products from "../model/products";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const App = () => {
   const randomIndex = Math.floor(Math.random() * products.length);
   const randomProduct = products[randomIndex];
+  const [userid, setUserId] = useState();
+  AsyncStorage.getItem("userId")
+  .then((value) => {
+    setUserId(value)
+  })
 
   const navigation = useNavigation();
+
+  function handleNewReceipt(){
+    
+    console.log(userid);
+    fetch('http://10.0.2.2:8080/new/receipt', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: userid,
+      
+    })
+      .then(response => response.text())
+      .then(data => {
+        console.log(data);
+        AsyncStorage.setItem("receiptId", data)
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
   const handleQRCode = () => {
-    navigation.navigate("DisplayQRCode");
+    AsyncStorage.getItem("receiptId")
+    .then((value) => {
+      if(value == null){
+        console.log("value jest null")
+        handleNewReceipt()
+        navigation.navigate("DisplayQRCode");
+      } else {
+        console.log(value)
+        navigation.navigate("DisplayQRCode");
+      }
+    })
+    .catch(error => {
+      console.log(error)
+    })
   };
 
   return (

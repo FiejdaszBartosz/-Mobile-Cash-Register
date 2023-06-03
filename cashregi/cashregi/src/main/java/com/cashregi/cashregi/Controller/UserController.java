@@ -41,9 +41,10 @@ public class UserController {
     }
 
     @PostMapping("/new/receipt")
-    public ResponseEntity<?> addNewReceipt(
-            @RequestBody UUID user_id
-    ){
-       return ResponseEntity.ok(userService.addNewReceipt(user_id));
+    public ResponseEntity<?> addNewReceipt(@RequestBody String userId) {
+        String cleanedUserId = userId.replaceAll("[\"/]", "");
+        System.out.println(cleanedUserId);
+        UUID userUUID = UUID.fromString(cleanedUserId);
+        return ResponseEntity.ok(userService.addNewReceipt(userUUID));
     }
 }

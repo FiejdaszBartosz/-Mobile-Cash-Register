@@ -21,20 +21,26 @@ import Caption from "../components/caption";
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword1, setShowPassword1] = useState(false);
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
   const navigation = useNavigation();
 
-  const testFun = () => {
-    alert(`testFun`);
+  const handleRegister = (event) => {
+    event.preventDefault();
+    console.log(email + firstName + lastName + password);
+
     fetch('http://10.0.2.2:8080/signin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        firstName: "Test",
-        lastName: "Test",
-        email: "test5@test.com",
-        password: "test"
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password
       }),
     })
       .then(response => response.text())
@@ -67,6 +73,8 @@ const SignUpPage = () => {
                 placeholder="EMAIL"
                 placeholderTextColor={"#797676"}
                 keyboardType="default"
+                value={email}
+                onChangeText={text => setEmail(text)}
               />
             </View>
             <View style={style.input}>
@@ -77,6 +85,8 @@ const SignUpPage = () => {
                 placeholderTextColor={"#797676"}
                 secureTextEntry={!showPassword}
                 keyboardType="default"
+                value={password}
+                onChangeText={text => setPassword(text)}
               />
               <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
                 {showPassword ? (
@@ -112,20 +122,24 @@ const SignUpPage = () => {
                 placeholder="NAME"
                 placeholderTextColor={"#797676"}
                 keyboardType="default"
+                value={firstName}
+                onChangeText={text => setFirstName(text)}
               />
             </View>
             <View style={style.input}>
               <FontAwesome5 name="mobile" style={style.icons} />
               <TextInput
                 style={[style.textInput, style.dataInput]}
-                placeholder="PHONE NUMBER"
+                placeholder="LASTNAME"
                 placeholderTextColor={"#797676"}
-                keyboardType="numeric"
+                keyboardType="default"
+                value={lastName}
+                onChangeText={text => setLastName(text)}
               />
             </View>
             <View style={style.signUpButton}>
               <TouchableOpacity
-                onPress={testFun}
+                onPress={handleRegister}
                 style={style.signUpButtonText}
               >
                 <Text style={[style.signUpButtonTextColor]}>SIGN UP</Text>

@@ -33,13 +33,13 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public Receipt addNewReceipt(UUID user_id){
+    public UUID addNewReceipt(UUID user_id){
         User user = userRepository.getUserByEmail(user_id).orElse(null);
         LocalDateTime currentDateTime = LocalDateTime.now();
 
         Receipt receipt = new Receipt(user, currentDateTime, null, 0.0);
         receiptRepository.save(receipt);
 
-        return receipt;
+        return receipt.getId();
     }
 }
