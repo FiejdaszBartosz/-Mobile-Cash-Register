@@ -16,13 +16,47 @@ import {
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Logo from "../components/logo";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
   const navigation = useNavigation();
   const handleSignUp = () => {
     navigation.navigate("SignUpPage");
+  };
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+
+    fetch('http://containers-us-west-93.railway.app:7244/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password
+      }),
+    })
+      .then(response => response.text())
+      .then(data => {
+        AsyncStorage.setItem('userId', data);
+        AsyncStorage.getItem('userId')
+        .then((value) => {
+          if(value != "User not found"){
+            AsyncStorage.removeItem("receiptId", null)
+            navigation.navigate("HomePage")
+          } else{
+            alert("Niepoprawne dane logowania.")
+          }
+        })
+      })
+      .catch(error => {
+        console.error(error);
+      });
   };
 
   return (
@@ -50,6 +84,8 @@ const LoginPage = () => {
                   style={[style.loginText]}
                   placeholder="EMAIL"
                   placeholderTextColor={"#797676"}
+                  value={email}
+                  onChangeText={text => setEmail(text)}
                 />
               </View>
               <View style={style.password}>
@@ -60,6 +96,8 @@ const LoginPage = () => {
                   placeholderTextColor={"#797676"}
                   keyboardType="default"
                   secureTextEntry={!showPassword}
+                  value={password}
+                  onChangeText={text => setPassword(text)}
                 />
                 <TouchableOpacity
                   onPress={() => setShowPassword(!showPassword)}
@@ -78,7 +116,7 @@ const LoginPage = () => {
               </View> */}
               <View style={style.loginButton}>
                 <TouchableOpacity
-                  onPress={() => {}}
+                  onPress={handleLogin}
                   style={style.loginButtonText}
                 >
                   <Text style={[style.loginButtonTextColor]}>LOGIN</Text>

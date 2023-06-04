@@ -23,27 +23,31 @@ const SignUpPage = () => {
   const [isTextInputFocused, setIsTextInputFocused] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword1, setShowPassword1] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setconfirmPassword] = useState("");
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
-
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
   const navigation = useNavigation();
 
-  const testFun = () => {
-    if (password === confirmPassword) {
-      fetch("http://10.0.2.2:8080/signin", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          firstName: name,
-          lastName: surname,
-          email: email,
-          password: password,
-        }),
+  const handleRegister = (event) => {
+    event.preventDefault();
+    console.log(email + firstName + lastName + password);
+
+    fetch('https://mobile-cash-register-production.up.railway.app/signin', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password
+      }),
+    })
+      .then(response => response.text())
+      .then(data => {
+        console.log(data);
       })
         .then((response) => response.text())
         .then((data) => {
@@ -61,21 +65,6 @@ const SignUpPage = () => {
     navigation.navigate("LoginPage");
   };
 
-  const handleChange = (name, value) => {
-    if (name === "email") {
-      setEmail(value);
-    } else if (name === "password") {
-      setPassword(value);
-    } else if (name === "confirmPassword") {
-      setconfirmPassword(value);
-    } else if (name === "name") {
-      setName(value);
-    } else if (name === "surname") {
-      setSurname(value);
-    } else {
-      alert("error");
-    }
-  };
   const handleTextInputFocus = () => {
     setIsTextInputFocused(true);
   };
@@ -84,23 +73,23 @@ const SignUpPage = () => {
     setIsTextInputFocused(false);
   };
 
+
+
+onFocus={handleTextInputFocus}
+                onBlur={handleTextInputBlur}
+
+
+
+
   return (
     <SafeAreaView style={style.container}>
       <View style={style.mainContainer}>
         <KeyboardAvoidingView
-          behavior="height"
+          behavior="weight"
           style={style.keyboardAvoidingView}
         >
-          <Image
-            style={style.logo}
-            source={require("../assets/img/logos/regiself-logo.png")}
-          />
-          {isTextInputFocused ? (
-            <Caption caption="" />
-          ) : (
-            <Caption caption="CREATE ACCOUNT" />
-          )}
-
+          <Logo />
+          <Caption caption="CREATE ACCOUNT" />
           <View style={style.signUpPanel}>
             <View style={style.input}>
               <FontAwesome name="envelope" style={style.icons} />
@@ -110,7 +99,7 @@ const SignUpPage = () => {
                 placeholderTextColor={"#797676"}
                 keyboardType="default"
                 value={email}
-                onChangeText={(value) => handleChange("email", value)}
+                onChangeText={text => setEmail(text)}
                 onFocus={handleTextInputFocus}
                 onBlur={handleTextInputBlur}
               />
@@ -124,7 +113,7 @@ const SignUpPage = () => {
                 secureTextEntry={!showPassword}
                 keyboardType="default"
                 value={password}
-                onChangeText={(value) => handleChange("password", value)}
+                onChangeText={text => setPassword(text)}
                 onFocus={handleTextInputFocus}
                 onBlur={handleTextInputBlur}
               />
@@ -140,12 +129,10 @@ const SignUpPage = () => {
               <FontAwesome5 name="lock" style={style.icons} />
               <TextInput
                 style={[style.textInput, style.passwordTextInput]}
-                placeholder="CONFIRM PASSWORD"
+                placeholder="PASSWORD"
                 placeholderTextColor={"#797676"}
                 secureTextEntry={!showPassword1}
                 keyboardType="default"
-                value={confirmPassword}
-                onChangeText={(value) => handleChange("confirmPassword", value)}
                 onFocus={handleTextInputFocus}
                 onBlur={handleTextInputBlur}
               />
@@ -166,28 +153,26 @@ const SignUpPage = () => {
                 placeholder="NAME"
                 placeholderTextColor={"#797676"}
                 keyboardType="default"
-                value={name}
-                onChangeText={(value) => handleChange("name", value)}
+                value={firstName}
+                onChangeText={text => setFirstName(text)}
                 onFocus={handleTextInputFocus}
                 onBlur={handleTextInputBlur}
               />
             </View>
             <View style={style.input}>
-              <FontAwesome name="user" style={style.icons} />
+              <FontAwesome5 name="mobile" style={style.icons} />
               <TextInput
                 style={[style.textInput, style.dataInput]}
-                placeholder="SURNAME"
+                placeholder="LASTNAME"
                 placeholderTextColor={"#797676"}
                 keyboardType="default"
-                value={surname}
-                onChangeText={(value) => handleChange("surname", value)}
-                onFocus={handleTextInputFocus}
-                onBlur={handleTextInputBlur}
+                value={lastName}
+                onChangeText={text => setLastName(text)}
               />
             </View>
             <View style={style.signUpButton}>
               <TouchableOpacity
-                onPress={testFun}
+                onPress={handleRegister}
                 style={style.signUpButtonText}
               >
                 <Text style={[style.signUpButtonTextColor]}>SIGN UP</Text>
