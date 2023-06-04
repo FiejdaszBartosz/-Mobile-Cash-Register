@@ -71,11 +71,11 @@ const LoginPage = () => {
                   )}
                 </TouchableOpacity>
               </View>
-              <View style={style.recovery}>
+              {/* <View style={style.recovery}>
                 <TouchableOpacity onPress={() => {}}>
                   <Text style={[style.recoveryColor]}>Recovery password</Text>
                 </TouchableOpacity>
-              </View>
+              </View> */}
               <View style={style.loginButton}>
                 <TouchableOpacity
                   onPress={() => {}}
