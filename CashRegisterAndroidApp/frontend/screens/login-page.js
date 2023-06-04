@@ -34,7 +34,7 @@ const LoginPage = () => {
             source={require("../assets/img/logos/regiself-logo.png")}
           />
           <KeyboardAvoidingView
-            behavior="weight"
+            behavior="height"
             style={style.keyboardAvoidingView}
           >
             <View style={style.caption}>
@@ -71,11 +71,11 @@ const LoginPage = () => {
                   )}
                 </TouchableOpacity>
               </View>
-              <View style={style.recovery}>
+              {/* <View style={style.recovery}>
                 <TouchableOpacity onPress={() => {}}>
                   <Text style={[style.recoveryColor]}>Recovery password</Text>
                 </TouchableOpacity>
-              </View>
+              </View> */}
               <View style={style.loginButton}>
                 <TouchableOpacity
                   onPress={() => {}}
@@ -150,7 +150,7 @@ const style = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: "80%",
-    height: "50%",
+    height: 280,
     backgroundColor: "#457B9D",
     borderRadius: 28,
   },
