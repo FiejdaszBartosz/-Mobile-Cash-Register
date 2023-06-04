@@ -20,6 +20,7 @@ import Logo from "../components/logo";
 import Caption from "../components/caption";
 
 const SignUpPage = () => {
+  const [isTextInputFocused, setIsTextInputFocused] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword1, setShowPassword1] = useState(false);
   const [email, setEmail] = useState("");
@@ -75,19 +76,31 @@ const SignUpPage = () => {
       alert("error");
     }
   };
+  const handleTextInputFocus = () => {
+    setIsTextInputFocused(true);
+  };
+
+  const handleTextInputBlur = () => {
+    setIsTextInputFocused(false);
+  };
 
   return (
     <SafeAreaView style={style.container}>
       <View style={style.mainContainer}>
         <KeyboardAvoidingView
-          behavior="weight"
+          behavior="height"
           style={style.keyboardAvoidingView}
         >
           <Image
             style={style.logo}
             source={require("../assets/img/logos/regiself-logo.png")}
           />
-          <Caption caption="CREATE ACCOUNT" />
+          {isTextInputFocused ? (
+            <Caption caption="" />
+          ) : (
+            <Caption caption="CREATE ACCOUNT" />
+          )}
+
           <View style={style.signUpPanel}>
             <View style={style.input}>
               <FontAwesome name="envelope" style={style.icons} />
@@ -98,6 +111,8 @@ const SignUpPage = () => {
                 keyboardType="default"
                 value={email}
                 onChangeText={(value) => handleChange("email", value)}
+                onFocus={handleTextInputFocus}
+                onBlur={handleTextInputBlur}
               />
             </View>
             <View style={style.input}>
@@ -110,6 +125,8 @@ const SignUpPage = () => {
                 keyboardType="default"
                 value={password}
                 onChangeText={(value) => handleChange("password", value)}
+                onFocus={handleTextInputFocus}
+                onBlur={handleTextInputBlur}
               />
               <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
                 {showPassword ? (
@@ -129,6 +146,8 @@ const SignUpPage = () => {
                 keyboardType="default"
                 value={confirmPassword}
                 onChangeText={(value) => handleChange("confirmPassword", value)}
+                onFocus={handleTextInputFocus}
+                onBlur={handleTextInputBlur}
               />
               <TouchableOpacity
                 onPress={() => setShowPassword1(!showPassword1)}
@@ -149,6 +168,8 @@ const SignUpPage = () => {
                 keyboardType="default"
                 value={name}
                 onChangeText={(value) => handleChange("name", value)}
+                onFocus={handleTextInputFocus}
+                onBlur={handleTextInputBlur}
               />
             </View>
             <View style={style.input}>
@@ -160,6 +181,8 @@ const SignUpPage = () => {
                 keyboardType="default"
                 value={surname}
                 onChangeText={(value) => handleChange("surname", value)}
+                onFocus={handleTextInputFocus}
+                onBlur={handleTextInputBlur}
               />
             </View>
             <View style={style.signUpButton}>
@@ -287,6 +310,7 @@ const style = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginTop: 40,
+    marginBottom: 20,
   },
 
   textSignIn: {
