@@ -10,6 +10,7 @@ import {
   TextInput,
   KeyboardAvoidingView,
   StatusBar,
+  Image,
 } from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -19,6 +20,7 @@ import Logo from "../components/logo";
 import Caption from "../components/caption";
 
 const SignUpPage = () => {
+  const [isTextInputFocused, setIsTextInputFocused] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword1, setShowPassword1] = useState(false);
   const [firstName, setFirstName] = useState();
@@ -47,15 +49,38 @@ const SignUpPage = () => {
       .then(data => {
         console.log(data);
       })
-      .catch(error => {
-        console.error(error);
-      });
+        .then((response) => response.text())
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      alert("Password not match");
+    }
   };
-
 
   const handleLogin = () => {
     navigation.navigate("LoginPage");
   };
+
+  const handleTextInputFocus = () => {
+    setIsTextInputFocused(true);
+  };
+
+  const handleTextInputBlur = () => {
+    setIsTextInputFocused(false);
+  };
+
+
+
+onFocus={handleTextInputFocus}
+                onBlur={handleTextInputBlur}
+
+
+
+
   return (
     <SafeAreaView style={style.container}>
       <View style={style.mainContainer}>
@@ -75,6 +100,8 @@ const SignUpPage = () => {
                 keyboardType="default"
                 value={email}
                 onChangeText={text => setEmail(text)}
+                onFocus={handleTextInputFocus}
+                onBlur={handleTextInputBlur}
               />
             </View>
             <View style={style.input}>
@@ -87,6 +114,8 @@ const SignUpPage = () => {
                 keyboardType="default"
                 value={password}
                 onChangeText={text => setPassword(text)}
+                onFocus={handleTextInputFocus}
+                onBlur={handleTextInputBlur}
               />
               <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
                 {showPassword ? (
@@ -104,6 +133,8 @@ const SignUpPage = () => {
                 placeholderTextColor={"#797676"}
                 secureTextEntry={!showPassword1}
                 keyboardType="default"
+                onFocus={handleTextInputFocus}
+                onBlur={handleTextInputBlur}
               />
               <TouchableOpacity
                 onPress={() => setShowPassword1(!showPassword1)}
@@ -124,6 +155,8 @@ const SignUpPage = () => {
                 keyboardType="default"
                 value={firstName}
                 onChangeText={text => setFirstName(text)}
+                onFocus={handleTextInputFocus}
+                onBlur={handleTextInputBlur}
               />
             </View>
             <View style={style.input}>
@@ -168,6 +201,12 @@ const style = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     marginTop: StatusBar.currentHeight || 0,
+  },
+  logo: {
+    width: "100%",
+    height: 77,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
   mainContainer: {
     flex: 1,
@@ -256,6 +295,7 @@ const style = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginTop: 40,
+    marginBottom: 20,
   },
 
   textSignIn: {

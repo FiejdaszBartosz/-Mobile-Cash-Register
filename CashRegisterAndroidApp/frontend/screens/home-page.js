@@ -76,7 +76,12 @@ const App = () => {
           <Image source={randomProduct.image} style={style.productImage} />
           <View style={style.productInfo}>
             <Text style={style.productName}>{randomProduct.name}</Text>
-            <Text style={style.productPrice}>$ {randomProduct.price}</Text>
+            <View style={style.promotionInfo}>
+              <Text style={[style.productPrice, style.productLineThrough]}>
+                $ {randomProduct.price}
+              </Text>
+              <Text style={style.productPricePromotion}>$ 1,5</Text>
+            </View>
           </View>
         </View>
         <View style={style.startShoppingButton}>
@@ -142,17 +147,34 @@ style = StyleSheet.create({
     marginTop: 125,
   },
   productInfo: {
+    width: "100%",
     alignItems: "flex-start",
+    alignContent: "flex-start",
+    flexDirection: "column",
     justifyContent: "center",
     paddingHorizontal: 10,
     flex: 1,
+    marginLeft: 3,
   },
   productName: {
-    fontSize: 14,
+    alignSelf: "center",
+    fontSize: 15,
     color: "#000000",
   },
   productPrice: {
-    fontSize: 20,
+    fontSize: 13,
     color: "#E63946",
+    marginLeft: 14,
+  },
+  productPricePromotion: {
+    fontSize: 22,
+    color: "#E63946",
+    marginLeft: 5,
+  },
+  promotionInfo: {
+    flexDirection: "row",
+  },
+  productLineThrough: {
+    textDecorationLine: "line-through",
   },
 });

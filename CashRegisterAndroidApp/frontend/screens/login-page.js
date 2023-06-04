@@ -11,6 +11,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   StatusBar,
+  Image,
 } from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -62,9 +63,12 @@ const LoginPage = () => {
     <SafeAreaView style={style.container}>
       <ScrollView contentContainerStyle={style.scrollContainer}>
         <View style={style.mainContainer}>
-          <Logo />
+          <Image
+            style={style.logo}
+            source={require("../assets/img/logos/regiself-logo.png")}
+          />
           <KeyboardAvoidingView
-            behavior="weight"
+            behavior="height"
             style={style.keyboardAvoidingView}
           >
             <View style={style.caption}>
@@ -105,11 +109,11 @@ const LoginPage = () => {
                   )}
                 </TouchableOpacity>
               </View>
-              <View style={style.recovery}>
+              {/* <View style={style.recovery}>
                 <TouchableOpacity onPress={() => {}}>
                   <Text style={[style.recoveryColor]}>Recovery password</Text>
                 </TouchableOpacity>
-              </View>
+              </View> */}
               <View style={style.loginButton}>
                 <TouchableOpacity
                   onPress={handleLogin}
@@ -141,6 +145,12 @@ const style = StyleSheet.create({
     alignContent: "center",
     justifyContent: "center",
     marginTop: StatusBar.currentHeight || 0,
+  },
+  logo: {
+    width: "100%",
+    height: 77,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
 
   mainContainer: {
@@ -178,7 +188,7 @@ const style = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: "80%",
-    height: "50%",
+    height: 280,
     backgroundColor: "#457B9D",
     borderRadius: 28,
   },
