@@ -30,7 +30,7 @@ const LoginPage = () => {
   const handleLogin = (event) => {
     event.preventDefault();
 
-    fetch('http://10.0.2.2:8080/login', {
+    fetch('http://containers-us-west-93.railway.app:7244/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

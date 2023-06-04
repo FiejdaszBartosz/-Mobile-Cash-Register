@@ -32,7 +32,7 @@ const App = () => {
   function handleNewReceipt(){
     
     console.log(userid);
-    fetch('http://10.0.2.2:8080/new/receipt', {
+    fetch('http://containers-us-west-93.railway.app:7244/new/receipt', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
