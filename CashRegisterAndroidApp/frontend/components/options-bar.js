@@ -13,9 +13,7 @@ const OptionsBar = () => {
     AsyncStorage.getItem("receiptId")
     .then((value) => {
       if(value != null){
-        navigation.navigate("ShoppingCartPage", {
-          receiptId: value
-        });
+        navigation.navigate("ShoppingCartPage");
       } else {
         alert("Brak aktywnego koszyka")
       }

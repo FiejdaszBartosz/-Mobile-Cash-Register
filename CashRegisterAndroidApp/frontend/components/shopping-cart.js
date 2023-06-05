@@ -13,13 +13,12 @@ import cartData from "../model/cart";
 import productsData from "../model/products";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
-const ShoppingCart = ({route}) => {
+const ShoppingCart = () => {
   const { shoppingCart, setShoppingCart} = useState();
-  const { receiptId } = route.params;
-  console.log("params: " + receiptId);
-   
-  console.log(userid);
-  fetch('https://mobile-cash-register-production.up.railway.app/receipt/' + receiptId, {
+
+  AsyncStorage.getItem("receiptId")
+  .then((value) => {
+    fetch('https://mobile-cash-register-production.up.railway.app/receipt/' + value, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -33,6 +32,7 @@ const ShoppingCart = ({route}) => {
     .catch(error => {
       console.error(error);
     });
+  })
 
 
   if (!cart) {
