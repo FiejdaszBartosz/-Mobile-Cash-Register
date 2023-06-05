@@ -47,4 +47,11 @@ public class UserController {
         UUID userUUID = UUID.fromString(cleanedUserId);
         return ResponseEntity.ok(userService.addNewReceipt(userUUID));
     }
+
+    @GetMapping("/user/receipts")
+    public ResponseEntity<?> getReceipts(
+            @RequestBody UUID user_id
+    ){
+        return ResponseEntity.ok(userService.allUsersReceipts(user_id));
+    }
 }

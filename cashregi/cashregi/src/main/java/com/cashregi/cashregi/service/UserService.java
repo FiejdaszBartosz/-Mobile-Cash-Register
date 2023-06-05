@@ -42,4 +42,9 @@ public class UserService {
 
         return receipt.getId();
     }
+
+    public List<Receipt> allUsersReceipts(UUID user_id){
+        User user = userRepository.getUserByEmail(user_id).orElse(null);
+        return user.getReceipts();
+    }
 }

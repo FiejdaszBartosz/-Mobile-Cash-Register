@@ -54,9 +54,9 @@ public class ReceiptController {
     }
 
     @GetMapping("/receipt/{receipt_id}")
-    public ResponseEntity<?> getProductsReceipt(
+    public ResponseEntity<?> getAllProd(
             @PathVariable UUID receipt_id
     ){
-        return ResponseEntity.ok(receiptService.getProductsFromReceipt(receipt_id));
+        return ResponseEntity.ok(receiptService.get(receipt_id));
     }
 }
