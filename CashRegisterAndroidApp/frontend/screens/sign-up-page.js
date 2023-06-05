@@ -32,8 +32,8 @@ const SignUpPage = () => {
   const handleRegister = (event) => {
     event.preventDefault();
     console.log(email + firstName + lastName + password);
-
-    fetch('https://mobile-cash-register-production.up.railway.app/signin', {
+    //https://mobile-cash-register-production.up.railway.app
+    fetch('http://10.0.2.2:8080/signin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -30,9 +30,9 @@ const App = () => {
   const navigation = useNavigation();
 
   function handleNewReceipt(){
-    
+    //http://containers-us-west-93.railway.app:7244/new/receipt   
     console.log(userid);
-    fetch('http://containers-us-west-93.railway.app:7244/new/receipt', {
+    fetch('http://10.0.2.2:8080/new/receipt', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
