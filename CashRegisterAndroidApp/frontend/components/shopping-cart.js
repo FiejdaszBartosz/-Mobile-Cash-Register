@@ -1,6 +1,4 @@
-/** @format */
-
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -9,51 +7,59 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import cartData from "../model/cart";
-import productsData from "../model/products";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ShoppingCart = () => {
-  const cartId = 1;
+  const [cartData, setCartData] = useState([]);
 
-  const cart = cartData.find((cartItem) => cartItem.id === cartId);
+  useEffect(() => {
+    getCartData();
+  }, []);
 
-  if (!cart) {
-    return (
-      <View style={style.noCart}>
-        <Text style={style.noCartText}>
-          The cart with the given id doesn't exist
-        </Text>
-      </View>
-    );
-  }
+  async function getCartData() {
+    await AsyncStorage.getItem("receiptId")
+      .then((value) => {
+        return fetch('https://mobile-cash-register-production.up.railway.app/receipt/' + value, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then((response) => response.json()) // Parse response as JSON
+          .then((data) => {
+            console.log(data);
+            setCartData(data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      });
+  }  
 
   return (
     <ScrollView style={style.scrollViewContent}>
       <View style={style.mainContainer}>
-        {cart.products.map((product, index) => {
-          const productData = productsData.find(
-            (item) => item.id === product.productId
-          );
+        {cartData.map((product, index) => {
           return (
-            <View key={product.productId}>
+            <View key={product.id}>
               <View style={style.productContainer}>
                 {/* <Image
                   source={productData.image}
                   style={style.imageContainer}
                 /> */}
                 <View style={style.productInformationContainer}>
-                  <Text style={style.productName}>{productData.name}</Text>
+                  <Text style={style.productName}>{product.name}</Text>
                   <Text style={style.productQuantity}>
-                    Quantity: {product.quantity}
+                    Quantity: {product.productCount}
                   </Text>
-                  <Text style={style.productPrice}>$ {productData.price}</Text>
+                  <Text style={style.productPrice}>$ {product.price * product.productCount}</Text>
                 </View>
                 <TouchableOpacity style={style.trashButton}>
                   <FontAwesome5 name={"trash"} style={style.trash} />
                 </TouchableOpacity>
               </View>
-              {index !== cart.products.length - 1 && (
+              {index !== cartData.length - 1 && (
                 <View style={style.line}></View>
               )}
             </View>
