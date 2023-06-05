@@ -29,10 +29,9 @@ const App = () => {
 
   const navigation = useNavigation();
 
-  function handleNewReceipt(){
-    
+  function handleNewReceipt(){   
     console.log(userid);
-    fetch('http://containers-us-west-93.railway.app:7244/new/receipt', {
+    fetch('https://mobile-cash-register-production.up.railway.app/new/receipt', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -56,10 +55,11 @@ const App = () => {
       if(value == null){
         console.log("value jest null")
         handleNewReceipt()
-        navigation.navigate("DisplayQRCode");
       } else {
         console.log(value)
-        navigation.navigate("DisplayQRCode");
+        navigation.navigate("DisplayQRCode", {
+          qrCode: value
+        });
       }
     })
     .catch(error => {

@@ -30,8 +30,7 @@ const LoginPage = () => {
 
   const handleLogin = (event) => {
     event.preventDefault();
-
-    fetch('http://containers-us-west-93.railway.app:7244/login', {
+    fetch('https://mobile-cash-register-production.up.railway.app/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

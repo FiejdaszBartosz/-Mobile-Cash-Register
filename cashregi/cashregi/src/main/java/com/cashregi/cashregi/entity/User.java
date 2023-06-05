@@ -18,7 +18,6 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
         }
 )
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(
@@ -105,5 +104,9 @@ public class User {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public List<Receipt> getReceipts() {
+        return receipts;
     }
 }

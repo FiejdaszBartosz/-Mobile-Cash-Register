@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -13,8 +13,17 @@ import Logo from "../components/logo";
 import Caption from "../components/caption";
 import OptionsBar from "../components/options-bar";
 import GoBack from "../components/go-back";
+import QRCode from 'react-native-qrcode-svg';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const DisplayQRCode = () => {
+
+const DisplayQRCode = ({route}) => {
+
+  const [receiptId, setReceiptId] = useState('');
+
+  const { qrCode } = route.params;
+  console.log("params: " + qrCode);
+
   return (
     <SafeAreaView style={style.container}>
       <View style={style.mainContainer}>
@@ -24,15 +33,17 @@ const DisplayQRCode = () => {
         </View>
         <Caption caption="Your QR Code" />
         <View style={style.qrCodeContainer}>
-          <Image
-            source={require("../assets/img/products/Domestos.png")}
+          <QRCode
+            value={qrCode}
+            size={300}
             style={style.qrCode}
-          ></Image>
+          />
         </View>
         <OptionsBar />
       </View>
     </SafeAreaView>
   );
+  
 };
 
 export default DisplayQRCode;
@@ -62,7 +73,6 @@ const style = StyleSheet.create({
     marginTop: 10,
   },
   qrCode: {
-    width: 300,
-    height: 300,
+    size: 600,
   },
 });

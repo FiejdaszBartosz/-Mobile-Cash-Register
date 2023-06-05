@@ -1,5 +1,6 @@
 package com.cashregi.cashregi.service;
 
+import com.cashregi.cashregi.Controller.ProductCount;
 import com.cashregi.cashregi.entity.Product;
 import com.cashregi.cashregi.entity.ProductReceipt;
 import com.cashregi.cashregi.entity.Receipt;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -38,6 +41,9 @@ public class ReceiptService {
     public Product addProductToReceipt(UUID receipt_id, String product_code){
         Receipt receipt = getReceipt(receipt_id);
         Product product = getProduct(product_code);
+
+        if(product == null)
+            return null;
 
         ProductReceipt pr = productReceiptRepository.getProductReceiptByProductAndReceipt(product, receipt)
                             .orElse(new ProductReceipt(receipt, product, 0));
@@ -83,4 +89,17 @@ public class ReceiptService {
         Receipt receipt = receiptRepository.getReceiptByIdEquals(receipt_id);
         receiptRepository.delete(receipt);
     }
+
+    public List<ProductCount> get(UUID receipt_id){
+        Receipt receipt = receiptRepository.getReceiptByIdEquals(receipt_id);
+        List<ProductCount> list = new ArrayList<>();
+
+        for(ProductReceipt pr: receipt.getProductReceipts()){
+            Product product = pr.getProduct();
+            list.add(new ProductCount(product.getId(), product.getName(), product.getCode(), product.getPrice(), pr.getProductCount()));
+        }
+
+        return list;
+    }
+
 }

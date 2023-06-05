@@ -42,10 +42,25 @@ public class ReceiptController {
 
     @PostMapping("product/{receipt_id}/{product_id}")
     public ResponseEntity<?> addProductToReceipt(
-            @PathVariable UUID receipt_id,
+            @PathVariable String receipt_id,
             @PathVariable String product_id
     ){
-        Product pr = receiptService.addProductToReceipt(receipt_id, product_id);
+        String cleanedReceiptId = receipt_id.replaceAll("[\"/]", "");
+        System.out.println(cleanedReceiptId);
+        UUID receiptUUID = UUID.fromString(cleanedReceiptId);
+
+        Product pr = receiptService.addProductToReceipt(receiptUUID, product_id);
+        if(pr == null)
+            return ResponseEntity.ok("Brak produktu");
         return ResponseEntity.ok(pr);
+    }
+
+    @GetMapping("/receipt/{receipt_id}")
+    public ResponseEntity<?> getAllProd(
+            @PathVariable String receipt_id
+    ){
+        String cleanedReceiptID= receipt_id.replaceAll("[\"/]", "");
+        UUID receiptUUID = UUID.fromString(cleanedReceiptID);
+        return ResponseEntity.ok(receiptService.get(receiptUUID));
     }
 }
