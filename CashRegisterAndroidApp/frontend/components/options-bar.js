@@ -4,11 +4,22 @@ import React from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const OptionsBar = () => {
   const navigation = useNavigation();
   const handleCart = () => {
-    navigation.navigate("ShoppingCartPage");
+    AsyncStorage.getItem("receiptId")
+    .then((value) => {
+      if(value != null){
+        navigation.navigate("ShoppingCartPage", {
+          receiptId: value
+        });
+      } else {
+        alert("Brak aktywnego koszyka")
+      }
+    })
   };
   const handleCamera = () => {
     navigation.navigate("Camera");

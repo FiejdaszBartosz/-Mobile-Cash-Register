@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -13,10 +13,27 @@ import cartData from "../model/cart";
 import productsData from "../model/products";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
-const ShoppingCart = () => {
-  const cartId = 1;
+const ShoppingCart = ({route}) => {
+  const { shoppingCart, setShoppingCart} = useState();
+  const { receiptId } = route.params;
+  console.log("params: " + receiptId);
+   
+  console.log(userid);
+  fetch('https://mobile-cash-register-production.up.railway.app/receipt/' + receiptId, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  })
+    .then(response => response.text())
+    .then(data => {
+      console.log(data);
+      setShoppingCart(data);
+    })
+    .catch(error => {
+      console.error(error);
+    });
 
-  const cart = cartData.find((cartItem) => cartItem.id === cartId);
 
   if (!cart) {
     return (
@@ -31,23 +48,20 @@ const ShoppingCart = () => {
   return (
     <ScrollView style={style.scrollViewContent}>
       <View style={style.mainContainer}>
-        {cart.products.map((product, index) => {
-          const productData = productsData.find(
-            (item) => item.id === product.productId
-          );
+        {shoppingCart.map((product, index) => {
           return (
-            <View key={product.productId}>
+            <View key={product.id}>
               <View style={style.productContainer}>
                 {/* <Image
                   source={productData.image}
                   style={style.imageContainer}
                 /> */}
                 <View style={style.productInformationContainer}>
-                  <Text style={style.productName}>{productData.name}</Text>
+                  <Text style={style.productName}>{product.name}</Text>
                   <Text style={style.productQuantity}>
-                    Quantity: {product.quantity}
+                    Quantity: {product.productCount}
                   </Text>
-                  <Text style={style.productPrice}>$ {productData.price}</Text>
+                  <Text style={style.productPrice}>$ {product.price}</Text>
                 </View>
                 <TouchableOpacity style={style.trashButton}>
                   <FontAwesome5 name={"trash"} style={style.trash} />
