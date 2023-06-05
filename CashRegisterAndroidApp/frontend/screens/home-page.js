@@ -55,10 +55,11 @@ const App = () => {
       if(value == null){
         console.log("value jest null")
         handleNewReceipt()
-        navigation.navigate("DisplayQRCode");
       } else {
         console.log(value)
-        navigation.navigate("DisplayQRCode");
+        navigation.navigate("DisplayQRCode", {
+          qrCode: value
+        });
       }
     })
     .catch(error => {
