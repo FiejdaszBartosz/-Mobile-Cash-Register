@@ -1,5 +1,6 @@
 package com.cashregi.cashregi.service;
 
+import com.cashregi.cashregi.Controller.ProductCount;
 import com.cashregi.cashregi.entity.Product;
 import com.cashregi.cashregi.entity.ProductReceipt;
 import com.cashregi.cashregi.entity.Receipt;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -97,6 +100,6 @@ public class ReceiptService {
         }
 
         return list;
-        }
     }
+
 }
