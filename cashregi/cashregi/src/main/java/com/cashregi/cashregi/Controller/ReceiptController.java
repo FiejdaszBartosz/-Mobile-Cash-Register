@@ -55,8 +55,10 @@ public class ReceiptController {
 
     @GetMapping("/receipt/{receipt_id}")
     public ResponseEntity<?> getAllProd(
-            @PathVariable UUID receipt_id
+            @PathVariable String receipt_id
     ){
-        return ResponseEntity.ok(receiptService.get(receipt_id));
+        String cleanedReceiptID= receipt_id.replaceAll("[\"/]", "");
+        UUID receiptUUID = UUID.fromString(cleanedReceiptID);
+        return ResponseEntity.ok(receiptService.get(receiptUUID));
     }
 }
