@@ -51,7 +51,7 @@ public class ReceiptController {
 
         Product pr = receiptService.addProductToReceipt(receiptUUID, product_id);
         if(pr == null)
-            return ResponseEtity.ok("Brak produktu")
+            return ResponseEntity.ok("Brak produktu");
         return ResponseEntity.ok(pr);
     }
 

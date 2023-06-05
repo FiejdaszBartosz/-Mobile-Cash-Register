@@ -1,6 +1,4 @@
-/** @format */
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -9,46 +7,40 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import cartData from "../model/cart";
-import productsData from "../model/products";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ShoppingCart = () => {
-  const { shoppingCart, setShoppingCart} = useState();
+  const [cartData, setCartData] = useState([]);
 
-  AsyncStorage.getItem("receiptId")
-  .then((value) => {
-    fetch('https://mobile-cash-register-production.up.railway.app/receipt/' + value, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    }
-  })
-    .then(response => response.text())
-    .then(data => {
-      console.log(data);
-      setShoppingCart(data);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  })
+  useEffect(() => {
+    getCartData();
+  }, []);
 
-
-  if (!cart) {
-    return (
-      <View style={style.noCart}>
-        <Text style={style.noCartText}>
-          The cart with the given id doesn't exist
-        </Text>
-      </View>
-    );
-  }
+  async function getCartData() {
+    await AsyncStorage.getItem("receiptId")
+      .then((value) => {
+        return fetch('https://mobile-cash-register-production.up.railway.app/receipt/' + value, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then((response) => response.json()) // Parse response as JSON
+          .then((data) => {
+            console.log(data);
+            setCartData(data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      });
+  }  
 
   return (
     <ScrollView style={style.scrollViewContent}>
       <View style={style.mainContainer}>
-        {shoppingCart.map((product, index) => {
+        {cartData.map((product, index) => {
           return (
             <View key={product.id}>
               <View style={style.productContainer}>
@@ -67,7 +59,7 @@ const ShoppingCart = () => {
                   <FontAwesome5 name={"trash"} style={style.trash} />
                 </TouchableOpacity>
               </View>
-              {index !== cart.products.length - 1 && (
+              {index !== cartData.length - 1 && (
                 <View style={style.line}></View>
               )}
             </View>
