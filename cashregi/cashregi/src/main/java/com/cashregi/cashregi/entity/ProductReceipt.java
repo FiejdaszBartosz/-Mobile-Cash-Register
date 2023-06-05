@@ -24,9 +24,10 @@ public class ProductReceipt {
     private Integer id;
 
     @ManyToOne
-    @MapsId("receiptId")
+    //@MapsId("receiptId")
     @JoinColumn(
             name = "receipt_id",
+            referencedColumnName = "id",
             foreignKey = @ForeignKey(
                     name = "receipt_id_fk"
             )
@@ -34,9 +35,10 @@ public class ProductReceipt {
     private Receipt receipt;
 
     @ManyToOne
-    @MapsId("productId")
+    //@MapsId("productId")
     @JoinColumn(
             name = "product_id",
+            referencedColumnName = "id",
             foreignKey = @ForeignKey(
                     name = "product_id_fk"
             )

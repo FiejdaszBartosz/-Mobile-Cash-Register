@@ -23,7 +23,7 @@ export default function Camera() {
     .then((value) => {
       setScanned(true);
       console.log(data);
-      fetch('http://containers-us-west-93.railway.app:7244/product/'+ value + '/' + data, {
+      fetch('https://mobile-cash-register-production.up.railway.app/product/'+ value + '/' + data, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
