@@ -94,6 +94,6 @@ public class ReceiptService {
         }
 
         return list;
-    }  return receipt.getProductReceipts();
+        }
     }
 }
