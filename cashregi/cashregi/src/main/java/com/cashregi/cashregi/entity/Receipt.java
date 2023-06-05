@@ -106,4 +106,8 @@ public class Receipt {
     public void setTotal(Double total) {
         this.total = total;
     }
+
+    public List<ProductReceipt> getProductReceipts() {
+        return productReceipts;
+    }
 }

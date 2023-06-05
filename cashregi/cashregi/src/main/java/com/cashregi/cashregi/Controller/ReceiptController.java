@@ -52,4 +52,11 @@ public class ReceiptController {
         Product pr = receiptService.addProductToReceipt(receiptUUID, product_id);
         return ResponseEntity.ok(pr);
     }
+
+    @GetMapping("/receipt/{receipt_id}")
+    public ResponseEntity<?> getProductsReceipt(
+            @PathVariable UUID receipt_id
+    ){
+        return ResponseEntity.ok(receiptService.getProductsFromReceipt(receipt_id));
+    }
 }
