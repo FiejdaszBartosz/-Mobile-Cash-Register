@@ -1,50 +1,60 @@
 package com.cashregi.cashregi.Controller;
 
-public class RegisterRequest {
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String password;
+public class ProductCount {
+    private Integer id;
+    private String name;
+    private String code;
+    private Double price;
+    private Integer productCount;
 
-    public RegisterRequest(){
+    public ProductCount(Integer id, String name, String code, Double price, Integer productCount) {
+        this.id = id;
+        this.name = name;
+        this.code = code;
+        this.price = price;
+        this.productCount = productCount;
     }
 
-    public RegisterRequest(String firstName, String lastName, String password, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-        this.email = email;
+    public ProductCount(){}
+
+
+    public Integer getId() {
+        return id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public String getName() {
+        return name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String getCode() {
+        return code;
     }
 
-    public String getEmail() {
-        return email;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public Double getPrice() {
+        return price;
     }
 
-    public String getPassword() {
-        return password;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public Integer getProductCount() {
+        return productCount;
+    }
+
+    public void setProductCount(Integer productCount) {
+        this.productCount = productCount;
     }
 }
