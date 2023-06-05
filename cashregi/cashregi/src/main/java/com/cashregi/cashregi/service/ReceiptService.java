@@ -88,7 +88,7 @@ public class ReceiptService {
         Receipt receipt = receiptRepository.getReceiptByIdEquals(receipt_id);
         List<ProductCount> list = new ArrayList<>();
 
-        for(ProductReceipt pr: receipt.getProductReceipts()){
+        for(ProductRecxeipt pr: receipt.getProductReceipts()){
             Product product = pr.getProduct();
             list.add(new ProductCount(product.getId(), product.getName(), product.getCode(), product.getPrice(), pr.getProductCount()));
         }
