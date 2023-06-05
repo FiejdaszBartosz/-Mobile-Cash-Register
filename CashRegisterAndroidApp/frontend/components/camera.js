@@ -23,7 +23,7 @@ export default function Camera() {
     .then((value) => {
       setScanned(true);
       console.log(data);
-      fetch('http://10.0.2.2:8080/product/'+ value +'/' + data, {
+      fetch('http://containers-us-west-93.railway.app:7244/product/'+ value + '/' + data, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

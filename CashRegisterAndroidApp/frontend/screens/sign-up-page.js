@@ -32,8 +32,7 @@ const SignUpPage = () => {
   const handleRegister = (event) => {
     event.preventDefault();
     console.log(email + firstName + lastName + password);
-    //https://mobile-cash-register-production.up.railway.app
-    fetch('http://10.0.2.2:8080/signin', {
+    fetch('https://mobile-cash-register-production.up.railway.app', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -49,17 +48,10 @@ const SignUpPage = () => {
       .then(data => {
         console.log(data);
       })
-        .then((response) => response.text())
-        .then((data) => {
-          console.log(data);
-        })
         .catch((error) => {
           console.error(error);
         });
-    } else {
-      alert("Password not match");
     }
-  };
 
   const handleLogin = () => {
     navigation.navigate("LoginPage");
@@ -72,14 +64,6 @@ const SignUpPage = () => {
   const handleTextInputBlur = () => {
     setIsTextInputFocused(false);
   };
-
-
-
-onFocus={handleTextInputFocus}
-                onBlur={handleTextInputBlur}
-
-
-
 
   return (
     <SafeAreaView style={style.container}>
