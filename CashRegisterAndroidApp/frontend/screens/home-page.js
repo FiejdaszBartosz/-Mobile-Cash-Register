@@ -31,7 +31,7 @@ const App = () => {
 
   function handleNewReceipt(){   
     console.log(userid);
-    fetch('http://containers-us-west-93.railway.app:7244/new/receipt', {
+    fetch('https://mobile-cash-register-production.up.railway.app/new/receipt', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
