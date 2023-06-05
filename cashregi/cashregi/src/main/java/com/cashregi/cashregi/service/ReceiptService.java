@@ -83,4 +83,9 @@ public class ReceiptService {
         Receipt receipt = receiptRepository.getReceiptByIdEquals(receipt_id);
         receiptRepository.delete(receipt);
     }
+
+    public List<Product> getProductsFromReceipt(UUID receipt_id){
+        Receipt receipt = receiptRepository.getReceiptByIdEquals(receipt_id);
+        return receipt.getProductReceipts();
+    }
 }
