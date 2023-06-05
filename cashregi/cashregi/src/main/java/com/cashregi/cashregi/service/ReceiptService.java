@@ -42,6 +42,9 @@ public class ReceiptService {
         Receipt receipt = getReceipt(receipt_id);
         Product product = getProduct(product_code);
 
+        if(product == null)
+            return null;
+
         ProductReceipt pr = productReceiptRepository.getProductReceiptByProductAndReceipt(product, receipt)
                             .orElse(new ProductReceipt(receipt, product, 0));
         pr.setProductCount(pr.getProductCount() + 1);

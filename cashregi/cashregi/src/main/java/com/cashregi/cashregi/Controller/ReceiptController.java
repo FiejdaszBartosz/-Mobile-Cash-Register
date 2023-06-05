@@ -50,6 +50,8 @@ public class ReceiptController {
         UUID receiptUUID = UUID.fromString(cleanedReceiptId);
 
         Product pr = receiptService.addProductToReceipt(receiptUUID, product_id);
+        if(pr == null)
+            return ResponseEtity.ok("Brak produktu")
         return ResponseEntity.ok(pr);
     }
 
