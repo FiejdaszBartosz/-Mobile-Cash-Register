@@ -53,7 +53,7 @@ const ShoppingCart = () => {
                   <Text style={style.productQuantity}>
                     Quantity: {product.productCount}
                   </Text>
-                  <Text style={style.productPrice}>$ {product.price}</Text>
+                  <Text style={style.productPrice}>$ {product.price * product.productCount}</Text>
                 </View>
                 <TouchableOpacity style={style.trashButton}>
                   <FontAwesome5 name={"trash"} style={style.trash} />
