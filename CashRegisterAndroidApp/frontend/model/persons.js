@@ -10,10 +10,10 @@ const persons = [
   },
   {
     id: 2,
-    name: "Krystiano Ronaldo",
+    name: "Jan Kowalski",
     phone: "134214214",
-    password: "siuuuuuuuuuuuuuuuuuuuuuuuuuuu",
-    email: "hzdkv@example.com",
+    password: "qwe",
+    email: "jan@test.com",
   },
 ];
 
