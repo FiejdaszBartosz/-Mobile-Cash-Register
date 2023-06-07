@@ -20,12 +20,12 @@ The Shopping App is designed to streamline the shopping experience by providing 
 ## Screens
 
 <p align="center">
-  <img src="screens/helloScreen.png" alt="Hello Screen" style="width: 25%;" />
-  <img src="screens/loginScreen.png" alt="Login Screen" style="width: 25%;" />
-  <img src="screens/registerScreen.png" alt="Register Screen" style="width: 25%;" />
-  <img src="screens/personalDataScreen.png" alt="Shopping Cart Screen" style="width: 25%;" />
-  <img src="screens/shoppingCartScreen.png" alt="Shopping Cart Screen" style="width: 25%;" />
-  <img src="screens/qrCodeScreen.png" alt="Shopping Cart Screen" style="width: 25%;" />
+  <img src="Screens/helloScreen.png" alt="Hello Screen" style="width: 25%;" />
+  <img src="Screens/loginScreen.png" alt="Login Screen" style="width: 25%;" />
+  <img src="Screens/registerScreen.png" alt="Register Screen" style="width: 25%;" />
+  <img src="Screens/personalDataScreen.png" alt="Shopping Cart Screen" style="width: 25%;" />
+  <img src="Screens/shoppingCartScreen.png" alt="Shopping Cart Screen" style="width: 25%;" />
+  <img src="Screens/qrCodeScreen.png" alt="Shopping Cart Screen" style="width: 25%;" />
 </p>
 
 ## Contributors
